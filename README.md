@@ -19,6 +19,7 @@ Rails 5.2.4
 - [ ] パスワード再設定機能
 - [ ] フォロー機能
 - [ ] 検索機能
+- [ ] 管理者権限
 
 ##### メイク記事
 - [ ] メイク記事一覧表示機能
@@ -56,10 +57,10 @@ https://docs.google.com/spreadsheets/d/1xBttXMAsBFYLgEdJ_-rmJs3scWC47D8RAtjrVFM1
 https://docs.google.com/spreadsheets/d/1pbM8sr_gv1MTgVAQKYxLrVgrRjdcg0UGKmu06TXkpzI/edit?usp=sharing
 
 ## ER図
-
+https://docs.google.com/spreadsheets/d/1uMBlLggcIxRGNCfo5P5QuBwgZeL2lU2TBq1Kp-JqMyU/edit?usp=sharing
 
 ## 画面遷移図
-
+https://docs.google.com/spreadsheets/d/1kUqc5wtvkDffs-cprsrc2sbTioSKvpDhitVlKkQ0XY4/edit?usp=sharing
 
 ## 画面ワイヤーフレーム
 https://docs.google.com/spreadsheets/d/1-lzC5tNGEPCOoQxwlfXbOVUtOLEOghNcMg4UoJ76_iU/edit?usp=sharing
@@ -72,11 +73,10 @@ https://docs.google.com/spreadsheets/d/1-lzC5tNGEPCOoQxwlfXbOVUtOLEOghNcMg4UoJ76
 * rails-admin
 * cancancan
 * bootstrap
+* jQuery
 * kaminari
-* font-awesome-rails
 * ransack
 * fog-aws
-
 
 
 # English Ver
@@ -96,28 +96,23 @@ Ruby 2.6.5
 Rails 5.2.4
 
 ## Functions list
-- [ ] Login function
-- [ ] User registration function
-  - [ ] Email address, name and password are required
-- [ ] Password reset function
-- [ ] Blog list display function
-  - [ ] Show number of comments
-  - [ ] Show number of favorites
-- [ ] Blog post function
-  - [ ] Title and article content is required
-- [ ] Blog edit function
-- [ ] Blog deletion function
-  - [ ] Posters can only do blog edit and blog deletion
-- [ ] Blog favorite function
-  - [ ] You can favorite only once per one blog
-  - [ ] You can't favorite your own blog
-- [ ] Comment post function
-- [ ] Comment deletion function
-- [ ] Comment edit function
-  - [ ] Only comment contributors can edit and delete comments
-- [ ] The comment function and favorite function can be executed without page transition.
 
-## Catalog design,Table_Definition,Screen transition diagram,ER diagram,Wire frame
+
+## Catalog design
+https://docs.google.com/spreadsheets/d/1xBttXMAsBFYLgEdJ_-rmJs3scWC47D8RAtjrVFM1ppc/edit?usp=sharing
+
+## Table_Definition
+https://docs.google.com/spreadsheets/d/1pbM8sr_gv1MTgVAQKYxLrVgrRjdcg0UGKmu06TXkpzI/edit?usp=sharing
+
+## ER diagram
+https://docs.google.com/spreadsheets/d/1uMBlLggcIxRGNCfo5P5QuBwgZeL2lU2TBq1Kp-JqMyU/edit?usp=sharing
+
+## Screen transition diagram
+
+
+## Wire frame
+https://docs.google.com/spreadsheets/d/1-lzC5tNGEPCOoQxwlfXbOVUtOLEOghNcMg4UoJ76_iU/edit?usp=sharing
+
 
 
 ## To be used Gem
@@ -127,7 +122,7 @@ Rails 5.2.4
 * rails-admin
 * cancancan
 * bootstrap
+* jQuery
 * kaminari
-* font-awesome-rails
 * ransack
 * fog-aws
