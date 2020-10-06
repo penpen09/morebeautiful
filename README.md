@@ -80,7 +80,7 @@ https://docs.google.com/spreadsheets/d/1-lzC5tNGEPCOoQxwlfXbOVUtOLEOghNcMg4UoJ76
 
 ## 要件
 1.devise,フォロー  
-2.ransac,通知機能(nortitication)
+2.ransack,通知機能(nortitication)
 
 
 
