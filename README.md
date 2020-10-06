@@ -9,7 +9,7 @@
 見やすくて、直感的に操作がわかるようなシンプルなデザインを意識しました。
 
 ## バージョン
-Ruby 2.6.5
+Ruby 2.6.5  
 Rails 5.2.4
 
 ## 機能一覧
@@ -77,6 +77,11 @@ https://docs.google.com/spreadsheets/d/1-lzC5tNGEPCOoQxwlfXbOVUtOLEOghNcMg4UoJ76
 * kaminari
 * ransack
 * fog-aws
+
+## 要件
+1.devise,フォロー  
+2.ransac,通知機能(nortitication)
+
 
 
 # English Ver
