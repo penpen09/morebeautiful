@@ -71,7 +71,7 @@ https://docs.google.com/spreadsheets/d/1-lzC5tNGEPCOoQxwlfXbOVUtOLEOghNcMg4UoJ76
 * fog-aws
 
 ## 要件
-1.devise,フォロー  
+1.コメント,フォロー
 2.ransack,通知機能(nortitication)：中
 
 
