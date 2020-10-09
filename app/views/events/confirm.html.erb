@@ -1,0 +1,22 @@
+<h3>以下の内容で、投稿する。</h3>
+  <%= form_with(model: @event, local: true) do |f| %>
+    <%= image_tag(@event.image.url) if @event.image && @event.image.url %>
+    <%= f.hidden_field :image_cache %>
+    <%= f.hidden_field :title %>
+    <%= f.hidden_field :content %>
+    <%= f.hidden_field :event_date %>
+    <%= f.hidden_field :place %>
+    <%= f.hidden_field :fee %>
+    <%= f.hidden_field :contact %>
+    <p>タイトル:<%= @event.title %></p>
+    <p>本文:<%= @event.content %></p>
+    <p>本文:<%= @event.event_date %></p>
+    <p>本文:<%= @event.place %></p>
+    <p>本文:<%= @event.fee %></p>
+    <p>本文:<%= @event.contact %></p>
+    <%= f.submit  "作成する" %>
+  <% end %>
+  <%= form_with(model:@event, url:events_path, local:true, method:"get") do |f| %>
+    <%= f.hidden_field :image_cache %>
+    <%= f.submit "戻る", name: "back" %>
+  <% end %>
