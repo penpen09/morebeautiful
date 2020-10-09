@@ -34,7 +34,7 @@
     <%= f.text_field :contact %>
   </div>
   <div class="field">
-    <%= image_tag(@event.image.url) if @event.image && @event.image.url %>
+    <%= image_tag(@event.image.thumb.url) if @event.image && @event.image.url %>
     <%= f.label :image %>
     <%= f.file_field :image %>
 

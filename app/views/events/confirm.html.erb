@@ -1,6 +1,6 @@
 <h3>以下の内容で、投稿する。</h3>
   <%= form_with(model: @event, local: true) do |f| %>
-    <%= image_tag(@event.image.url) if @event.image && @event.image.url %>
+    <%= image_tag(@event.image.thumb.url) if @event.image && @event.image.url %>
     <%= f.hidden_field :image_cache %>
     <%= f.hidden_field :title %>
     <%= f.hidden_field :content %>
