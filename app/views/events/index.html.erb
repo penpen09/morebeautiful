@@ -1,5 +1,8 @@
-
-<h1>Events</h1>
+<% if current_user.try(:admin?) %>
+  <h1>Events_Admin</h1>
+<% else %>
+  <h1>Events</h1>
+<% end %>
 
 <table>
   <thead>
