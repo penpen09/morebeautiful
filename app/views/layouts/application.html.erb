@@ -14,7 +14,7 @@
       <%= content_tag(:div, value, class:"#{key}") %>
     <% end %>
     <% if user_signed_in? %>
-      <%= link_to "作成", events_path %>
+      <%= link_to "プロフィール", user_path(current_user.id) %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "新規登録", new_user_registration_path %>
