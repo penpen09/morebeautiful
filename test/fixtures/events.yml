@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyText
+  image: MyText
+  event_date: 2020-10-09 22:18:43
+  place: MyString
+  fee: 1
+  contact: MyText
+  owner_id: 1
+  user: one
+
+two:
+  title: MyString
+  content: MyText
+  image: MyText
+  event_date: 2020-10-09 22:18:43
+  place: MyString
+  fee: 1
+  contact: MyText
+  owner_id: 1
+  user: two
