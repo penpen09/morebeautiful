@@ -10,3 +10,11 @@
   <%= link_to 'Edit', edit_event_path(@event) %> |
   <%= link_to 'Back', events_path %>
 </div>
+
+<% unless @event.user_id == current_user.id %>
+  <% if @eventroom.present? %>
+    <%= link_to 'キャンセル', eventroom_path(id: @eventroom.id), method: :delete %>
+  <% else %>
+    <%= link_to '参加する', eventrooms_path(event_id: @event.id), method: :post %>
+  <% end %>
+<% end %>
