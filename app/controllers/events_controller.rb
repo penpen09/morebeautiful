@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    # @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
+    @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
   end
 
   def new
