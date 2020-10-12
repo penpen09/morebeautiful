@@ -4,7 +4,19 @@
 <p>プロフィール : <%= @user.profile %></p>
 <p>愛用のメイク道具 : <%= @user.make_tool %></p>
 <p>youtubeチャンネル : <%= @user.youtube_channel %></p>
+<p><%= image_tag @user.icon.url %></p>
 
+<p>フォロー</p>
+<% @user.following.each do |user| %>
+  <%= link_to "#{user.name}",user_path(user) %>
+  <%= render 'follow_form', user: user %>
+<% end %>
+<br>
+<p>フォロワー</p>
+<% @user.followers.each do |user| %>
+  <%= link_to "#{user.name}",user_path(user) %>
+  <%= render 'follow_form', user: user %>
+<% end %>
 
 <br>
 <%= link_to 'Edit', edit_user_path(@user) %>
