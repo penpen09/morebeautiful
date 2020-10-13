@@ -5,4 +5,5 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :eventrooms, dependent: :destroy
   has_many :eventroom_users, through: :eventrooms, source: :user
+  has_many :comments, dependent: :destroy
 end

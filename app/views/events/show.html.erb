@@ -11,6 +11,14 @@
   <%= link_to 'Back', events_path %>
 </div>
 
+<p>コメント一覧</p>
+<div id="comments_area">
+  <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+</div>
+<%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
+
+
+
 <% unless @event.user_id == current_user.id %>
   <% if @eventroom.present? %>
     <%= link_to 'キャンセル', eventroom_path(id: @eventroom.id), method: :delete %>

@@ -9,6 +9,8 @@ class EventsController < ApplicationController
 
   def show
     @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
+    @comments = @event.comments
+    @comment = @event.comments.build
   end
 
   def new
