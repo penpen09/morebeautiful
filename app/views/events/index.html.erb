@@ -7,6 +7,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Title</th>
       <th>Content</th>
       <th>event_date</th>
@@ -20,6 +21,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= event.user.name %></td>
         <td><%= event.title %></td>
         <td><%= event.content %></td>
         <td><%= event.event_date %></td>
