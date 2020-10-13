@@ -4,6 +4,9 @@
 <p>プロフィール : <%= @user.profile %></p>
 <p>愛用のメイク道具 : <%= @user.make_tool %></p>
 <p>youtubeチャンネル : <%= @user.youtube_channel %></p>
+<p><%= image_tag @user.icon.url %></p>
+
+<%= render 'stats' %>
 
 
 <br>
