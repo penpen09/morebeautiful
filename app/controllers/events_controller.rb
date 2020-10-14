@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :check_event, only: [:edit, :update]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
@@ -8,9 +7,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
     @comments = @event.comments
     @comment = @event.comments.build
+    if user_signed_in?
+    @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
+    end
   end
 
   def new
