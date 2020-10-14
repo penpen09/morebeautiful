@@ -4,16 +4,24 @@
   <h1>Events</h1>
 <% end %>
 
+<%= search_form_for @q do |f| %>
+  <%= f.search_field :title_cont, {placeholder: "タイトルから検索"} %>
+  <%= f.select :labels_name_cont, options_from_collection_for_select(Label.all, :name, :name, {include_blank: ""}) %>
+  <%= f.date_select :event_date_gteq, :default => Time.now %>
+  <%= f.date_select :event_date_lteq, :default => Time.now + 1.year %>
+  <%= f.submit "検索" %>
+  <br />
+  <%= link_to '検索条件クリア', request.path %>
+<% end %>
+
 <table>
   <thead>
     <tr>
       <th>User</th>
       <th>Title</th>
-      <th>Content</th>
       <th>event_date</th>
       <th>place</th>
       <th>fee</th>
-      <th>contact</th>
       <th>Label</th>
       <th colspan="3"></th>
     </tr>
@@ -24,11 +32,9 @@
       <tr>
         <td><%= event.user.name %></td>
         <td><%= event.title %></td>
-        <td><%= event.content %></td>
-        <td><%= event.event_date %></td>
+        <td><%= event.event_date.strftime('%m/%d %H:%M') %></td>
         <td><%= event.place %></td>
         <td><%= event.fee %></td>
-        <td><%= event.contact %></td>
         <td><% event.labels.each do |label| %><%= label.name %><% end %></td>
         <td><%= link_to 'Show', event %></td>
         <% if current_user.try(:admin?) || current_user == event.user_id %>

@@ -4,6 +4,8 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @q = Event.ransack(params[:q])
+    @events = @q.result(distinct: true).includes(:labelings, :labels)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
@@ -34,7 +36,7 @@ class EventsController < ApplicationController
     else
        if @event.save
          # eventMailer.contact_mail(@event).deliver
-         redirect_to @event, notice: '新規作成しました！'
+         redirect_to events_path, notice: '新規作成しました！'
        else
          render :new
        end
@@ -46,7 +48,7 @@ class EventsController < ApplicationController
       render :edit
     else
       if @event.update(event_params)
-        redirect_to @event, notice: '編集しました！'
+        redirect_to events_path, notice: '編集しました！'
       else
         render :edit
       end
@@ -74,4 +76,5 @@ class EventsController < ApplicationController
      redirect_to events_path, notice: '権限がありません'
    end
  end
+
 end
