@@ -4,7 +4,15 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @q = Event.ransack(params[:q])
+    # @q = Label.ransack(params[:q])
+    @events = @q.result.includes(:labelings, :labels)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+  end
+
+  def search
+    @q = Event.search(search_params)
+    @events = @q.result.includes(:labelings, :labels)
   end
 
   def show
@@ -73,5 +81,9 @@ class EventsController < ApplicationController
    if current_user.id != @event.user.id
      redirect_to events_path, notice: '権限がありません'
    end
+ end
+
+ def search_params
+   params.require(:q).permit(:label_id_eq)
  end
 end

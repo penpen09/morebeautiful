@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :eventrooms, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :labels
+  # get 'search', to: 'events#search'
 end
