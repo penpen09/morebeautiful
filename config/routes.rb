@@ -8,7 +8,7 @@ Rails.application.routes.draw do
    resources :comments
   end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  root to:'events#index'
+  root to:'top#index'
 
   resources :users do
     member do
