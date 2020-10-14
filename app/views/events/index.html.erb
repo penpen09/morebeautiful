@@ -5,10 +5,13 @@
 <% end %>
 
 <%= search_form_for @q do |f| %>
-  <%= f.label :title, "タイトル検索" %>
-  <%= f.search_field :title_cont %>
+  <%= f.search_field :title_cont, {placeholder: "タイトルから検索"} %>
   <%= f.select :labels_name_cont, options_from_collection_for_select(Label.all, :name, :name, {include_blank: ""}) %>
+  <%= f.date_select :event_date_gteq, :default => Time.now %>
+  <%= f.date_select :event_date_lteq, :default => Time.now + 1.year %>
   <%= f.submit "検索" %>
+  <br />
+  <%= link_to '検索条件クリア', request.path %>
 <% end %>
 
 <table>
