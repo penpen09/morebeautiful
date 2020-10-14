@@ -7,6 +7,7 @@
 <%= search_form_for @q do |f| %>
   <%= f.label :title, "タイトル検索" %>
   <%= f.search_field :title_cont %>
+  <%= f.select :labels_name_cont, options_from_collection_for_select(Label.all, :name, :name, {include_blank: ""}) %>
   <%= f.submit "検索" %>
 <% end %>
 
@@ -28,7 +29,7 @@
       <tr>
         <td><%= event.user.name %></td>
         <td><%= event.title %></td>
-        <td><%= event.event_date %></td>
+        <td><%= event.event_date.strftime('%m/%d %H:%M') %></td>
         <td><%= event.place %></td>
         <td><%= event.fee %></td>
         <td><% event.labels.each do |label| %><%= label.name %><% end %></td>
