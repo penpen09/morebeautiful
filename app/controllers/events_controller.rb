@@ -1,16 +1,18 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :check_event, only: [:edit, :update]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     @events = Event.all
+    @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   def show
-    @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
     @comments = @event.comments
     @comment = @event.comments.build
+    if user_signed_in?
+    @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
+    end
   end
 
   def new
@@ -62,7 +64,9 @@ class EventsController < ApplicationController
  end
 
  def event_params
-   params.require(:event).permit(:image, :image_cache, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id)
+   params.require(:event).permit(:image, :image_cache, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id, {
+     label_ids:[]
+     })
  end
 
  def check_event

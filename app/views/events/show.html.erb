@@ -1,3 +1,5 @@
+<p><%= @event.user.name %></p>
+
 
 <p><%= @event.title %></p>
 <p><%= @event.content %></p>
@@ -19,7 +21,8 @@
 
 
 
-<% unless @event.user_id == current_user.id %>
+<% if user_signed_in? %>
+<%# unless @event.user_id == current_user.id %>
   <% if @eventroom.present? %>
     <%= link_to 'キャンセル', eventroom_path(id: @eventroom.id), method: :delete %>
   <% else %>
