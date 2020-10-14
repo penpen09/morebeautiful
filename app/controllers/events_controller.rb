@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   def show
@@ -63,7 +64,9 @@ class EventsController < ApplicationController
  end
 
  def event_params
-   params.require(:event).permit(:image, :image_cache, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id)
+   params.require(:event).permit(:image, :image_cache, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id, {
+     label_ids:[]
+     })
  end
 
  def check_event

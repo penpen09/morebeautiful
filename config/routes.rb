@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root to:'events#index'
+
   resources :users do
     member do
       get :followers, :following
@@ -16,4 +17,5 @@ Rails.application.routes.draw do
   end
   resources :eventrooms, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :labels
 end

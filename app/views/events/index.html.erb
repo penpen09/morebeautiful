@@ -14,6 +14,7 @@
       <th>place</th>
       <th>fee</th>
       <th>contact</th>
+      <th>Label</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,6 +29,7 @@
         <td><%= event.place %></td>
         <td><%= event.fee %></td>
         <td><%= event.contact %></td>
+        <td><% event.labels.each do |label| %><%= label.name %><% end %></td>
         <td><%= link_to 'Show', event %></td>
         <% if current_user.try(:admin?) || current_user == event.user_id %>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>

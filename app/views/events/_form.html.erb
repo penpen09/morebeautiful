@@ -34,10 +34,13 @@
     <%= f.text_field :contact %>
   </div>
   <div class="field">
+    <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name)  %>
+  </div>
+  <div class="field">
     <%= image_tag(@event.image.url) if @event.image && @event.image.url %>
     <%= f.label :image %>
     <%= f.file_field :image %>
-
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
