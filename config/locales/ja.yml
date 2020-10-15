@@ -205,3 +205,19 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+    messages:
+      create_agenda:
+  notice:
+    create: 作成しました
+    update: 編集しました
+    destroy: 削除しました
+    check_event: 権限がありません
+    comments:
+      create: 投稿できませんでした
+  flash:
+    comments:
+      editing: コメント編集中
+      edit_success: コメントが編集されました
+      edit_failure: コメントの編集に失敗しました
+      destroy_success: コメントが削除されました

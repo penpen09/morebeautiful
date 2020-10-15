@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_event, only: [:create, :edit, :update]
-  
+
   def create
     @event = Event.find(params[:event_id])
     @comment = @event.comments.build(comment_params)
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        format.html { redirect_to event_path(@event), notice: '投稿できませんでした...' }
+        format.html { redirect_to event_path(@event), notice: t('notice.comments.create') }
       end
     end
   end
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   def edit
     @comment = @event.comments.find(params[:id])
     respond_to do |format|
-      flash.now[:notice] = 'コメントの編集中'
+      flash.now[:notice] = t('flash.comments.editing')
       format.js { render :edit }
     end
   end
@@ -25,10 +25,10 @@ class CommentsController < ApplicationController
     @comment = @event.comments.find(params[:id])
       respond_to do |format|
         if @comment.update(comment_params)
-          flash.now[:notice] = 'コメントが編集されました'
+          flash.now[:notice] = t('flash.comments.edit_success')
           format.js { render :index }
         else
-          flash.now[:notice] = 'コメントの編集に失敗しました'
+          flash.now[:notice] = t('flash.comments.edit_failure')
           format.js { render :edit_error }
         end
       end
@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      flash.now[:notice] = 'コメントが削除されました'
+      flash.now[:notice] = t('flash.comments.destroy_success')
       format.js { render :index }
     end
   end

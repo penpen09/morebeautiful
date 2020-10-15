@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :check_event, only: [:new, :edit, :update, :destroy]
 
   def index
     @events = Event.all
@@ -36,7 +37,7 @@ class EventsController < ApplicationController
     else
        if @event.save
          # eventMailer.contact_mail(@event).deliver
-         redirect_to events_path, notice: '新規作成しました！'
+         redirect_to events_path, notice: t('notice.create')
        else
          render :new
        end
@@ -48,7 +49,7 @@ class EventsController < ApplicationController
       render :edit
     else
       if @event.update(event_params)
-        redirect_to events_path, notice: '編集しました！'
+        redirect_to events_path, notice: t('notice.update')
       else
         render :edit
       end
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: '削除しました！'
+    redirect_to events_url, notice: t('notice.destroy')
   end
 
  private
@@ -73,7 +74,7 @@ class EventsController < ApplicationController
 
  def check_event
    if current_user.id != @event.user.id
-     redirect_to events_path, notice: '権限がありません'
+     redirect_to events_path, notice: t('notice.check_event')
    end
  end
 
