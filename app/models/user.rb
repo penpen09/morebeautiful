@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :events
   mount_uploader :icon, IconUploader
-  validates :name, presence: true, length: { in: 1..255 }
+  validates :name, length: { maximum: 900 }
 
   validates :profile, length: { maximum: 900 }
   validates :make_tool, length: { maximum: 900 }
