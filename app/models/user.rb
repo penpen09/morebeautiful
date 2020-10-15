@@ -7,6 +7,7 @@ class User < ApplicationRecord
   mount_uploader :icon, IconUploader
   has_many :eventrooms, dependent: :destroy
   has_many :eventroom_events, through: :eventrooms, source: :event
+  has_many :comments, dependent: :destroy
 
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
