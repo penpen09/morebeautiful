@@ -70,11 +70,4 @@ class EventsController < ApplicationController
      label_ids:[]
      })
  end
-
- # def check_event
- #   if current_user.id != @event.user.id
- #     redirect_to events_path, notice: t('notice.check_event')
- #   end
- # end
-
 end
