@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   validates :title, presence: true, length: { in: 1..255 }
   validates :content, presence: true, length: { in: 1..900 }
-  validates :fee, numericality: {greater_than: 0}
+  validates :fee, presence: true, numericality: {greater_than: 0}
+  validates :place, presence: true, length: { in: 1..100 }
   validates :date_before_today, presence: true
   mount_uploader :image, ImageUploader
   belongs_to :user
