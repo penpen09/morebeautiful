@@ -19,11 +19,11 @@
   </div>
   <div class="field">
     <%= f.label :event_date %>
-    <%= f.datetime_select :event_date %>
+    <%= f.datetime_select :event_date, include_blank: true, minute_step: 10 %>
   </div>
   <div class="field">
     <%= f.label :place %>
-    <%= f.text_field :place %>
+    <%= f.text_field :place, placeholder: "例：オンライン、東京都渋谷区" %>
   </div>
   <div class="field">
     <%= f.label :fee %>

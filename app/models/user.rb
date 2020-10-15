@@ -5,6 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :events
   mount_uploader :icon, IconUploader
+  validates :name, presence: true, length: { in: 1..255 }
+
+  validates :profile, length: { maximum: 900 }
+  validates :make_tool, length: { maximum: 900 }
+  validates :youtube_channel, allow_blank: true, format: { with: /(\Ahttps:\/\/www\.youtube\.com\/watch\?v=)+[\w]{11}\z/ }
+
   has_many :eventrooms, dependent: :destroy
   has_many :eventroom_events, through: :eventrooms, source: :event
   has_many :comments, dependent: :destroy

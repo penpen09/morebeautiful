@@ -1,6 +1,7 @@
 ---
 ja:
   activerecord:
+    date_before_today: 開催日時
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
