@@ -1,12 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  before_action :check_event, only: [:new, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
     @q = Event.ransack(params[:q])
     @events = @q.result(distinct: true).includes(:labelings, :labels)
+    @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
@@ -72,10 +71,10 @@ class EventsController < ApplicationController
      })
  end
 
- def check_event
-   if current_user.id != @event.user.id
-     redirect_to events_path, notice: t('notice.check_event')
-   end
- end
+ # def check_event
+ #   if current_user.id != @event.user.id
+ #     redirect_to events_path, notice: t('notice.check_event')
+ #   end
+ # end
 
 end
