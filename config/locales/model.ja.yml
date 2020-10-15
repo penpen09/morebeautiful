@@ -12,6 +12,11 @@ ja:
       event:
         title: タイトル
         content: 内容
+        image: 画像
+        event_date: 開催日時
+        place: 開催場所
+        fee: 参加費
+        contact: 連絡事項
       user:
         name: 名前
         email: メールアドレス
@@ -22,3 +27,4 @@ ja:
         profile: プロフィール
         make_tool: メイク道具
         icon: アイコン
+        youtube_channel: youtubeチャンネル
