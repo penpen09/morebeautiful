@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   validates :content, presence: true, length: { in: 1..900 }
   validates :fee, presence: true, numericality: {only_integer: true}
   validates :place, presence: true, length: { in: 1..100 }
-  validates :date_before_today, presence: true
+  validate :date_before_today
   mount_uploader :image, ImageUploader
   belongs_to :user
   has_many :eventrooms, dependent: :destroy

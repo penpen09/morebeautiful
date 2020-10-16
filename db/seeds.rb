@@ -37,7 +37,7 @@ end
 3.times do |n|
   Event.create!(title: "ハロウィンメイク",
                 content: "ゾンビのメイクをしたい人向けです",
-                event_date: DateTime.new(2020,10,25,12,00,00),
+                event_date: '2020-10-25 10:00:00',
                 place: "オフライン",
                 fee: 0,
                 contact: "zoomのurlはこちら",
@@ -48,7 +48,7 @@ end
 3.times do |n|
   Event.create!(title: "秋にぴったりのメイク",
                 content: "秋にあうオレンジメイク",
-                event_date: DateTime.new(2020,10,20,15,00,00),
+                event_date: '2020-11-15 15:30:00',
                 place: "東京都渋谷区",
                 fee: 100,
                 contact: "オレンジ色のアイシャドウがあればご準備ください",
@@ -59,7 +59,7 @@ end
 3.times do |n|
   Event.create!(title: "クリスマスメイク",
                 content: "クリスマスデートにあうメイク",
-                event_date: DateTime.new(2020,12,20,10,30,00),
+                event_date: '2020-12-17 16:20:00',
                 place: "オフライン",
                 fee: 1000,
                 contact: "zoomのurlはこちら",
@@ -70,7 +70,7 @@ end
 3.times do |n|
   Event.create!(title: "毎日メイク",
                 content: "仕事に行く時のナチュラルメイク",
-                event_date: DateTime.new(2020,11,01,11,00,00),
+                event_date: '2020-10-30 09:00:00',
                 place: "横浜市",
                 fee: 500,
                 contact: "感想を待ってます",
