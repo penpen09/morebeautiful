@@ -1,4 +1,31 @@
-<%= render 'form', event: @event %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<body id="page-top-event">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/"><img class="img-fluid" src="/assets/logo.jpg"</img></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              <li class="nav-item navbar-left"><%= link_to "イベント一覧",events_path , class:"nav-link js-scroll-trigger" %></li>
+              <li class="nav-item navbar-left"><%= link_to "イベント作成",new_event_path , class:"nav-link js-scroll-trigger" %></li>
+              <li class="nav-item navbar-left"><%= link_to "投稿一覧",root_path , class:"nav-link js-scroll-trigger" %></li>
+              <li class="nav-item navbar-left"><%= link_to "新規投稿",root_path , class:"nav-link js-scroll-trigger" %></li>
+              <% if user_signed_in? %>
+                <li class="nav-item"><%= link_to "プロフィール", user_path(current_user.id) , class:"nav-link js-scroll-trigger"%></li>
+                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link js-scroll-trigger" %></li>
+              <% else %>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/users/sign_in">ログイン</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/users/sign_up">新規登録</a></li>
+              <% end %>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="page-section" id="about">
+  <div class="container">
+    <%= render 'form', event: @event %>
+    <%= link_to 'Show', @event %> |
+    <%= link_to 'Back', events_path %>
+  </div>
+</div>
+</div>

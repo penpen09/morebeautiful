@@ -1,6 +1,5 @@
 class TopController < ApplicationController
   def index
-  end
-  def show
+    @events = Event.order(created_at: :asc).limit(5)
   end
 end
