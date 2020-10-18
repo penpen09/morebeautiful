@@ -1,4 +1,7 @@
 class EventroomsController < ApplicationController
+  def index
+    @eventrooms = current_user.eventrooms.where(event_id: params[:event_id])
+  end
   def create
     eventroom = current_user.eventrooms.create(event_id: params[:event_id])
     redirect_to events_url, notice: "#{eventroom.event.user.name}のイベントに参加しました"

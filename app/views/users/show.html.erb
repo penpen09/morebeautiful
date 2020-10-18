@@ -1,13 +1,32 @@
-<h1>Users#show</h1>
-<p>名前 : <%= @user.name %></p>
-<p>メールアドレス : <%= @user.email %></p>
-<p>プロフィール : <%= @user.profile %></p>
-<p>愛用のメイク道具 : <%= @user.make_tool %></p>
-<p>youtubeチャンネル : <%= @user.youtube_channel %></p>
-<p><%= image_tag @user.icon.url %></p>
-
-<%= render 'stats' %>
-
-
-<br>
-<%= link_to 'Edit', edit_user_path(@user) %>
+<%= render 'events_header' %>
+<section class="page-section" id="about">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1>Shop Name</h1>
+      <div class="list-group">
+        <a><%= link_to 'Profile', user_path(@user), class: "list-group-item" %></a>
+        <a><%= link_to 'following', following_user_path(@user), class: "list-group-item" %></a>
+        <a><%= link_to 'followers', followers_user_path(@user), class: "list-group-item" %></a>
+        <a><%= link_to '参加中イベント', eventrooms_user_path(@user), class: "list-group-item" %></a>
+        <a><%= link_to '主催イベント', event_index_user_path(@user), class: "list-group-item" %></a>
+        <a href="#" class="list-group-item">投稿記事</a>
+        <a href="#" class="list-group-item">お気に入り記事</a>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="container">
+        <p><%= image_tag @user.icon.url %></p>
+        <p>名前 : <%= @user.name %></p>
+        <p>メールアドレス : <%= @user.email %></p>
+        <p>プロフィール : <%= @user.profile %></p>
+        <p>愛用のメイク道具 : <%= @user.make_tool %></p>
+        <p>youtubeチャンネル : <%= @user.youtube_channel %></p>
+        <%= render 'stats' %>
+        <br>
+        <%= link_to 'Edit', edit_user_path(@user) %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

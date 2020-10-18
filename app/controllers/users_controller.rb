@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @eventrooms = current_user.eventrooms
   end
 
   def following
@@ -29,6 +30,14 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
+  def eventrooms
+    @eventrooms = current_user.eventrooms
+  end
+
+  def event_index
+    @user = User.find(params[:id])
+    @events = @user.events
+  end
 
   private
   def user_params

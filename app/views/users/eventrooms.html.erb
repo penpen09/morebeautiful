@@ -1,0 +1,5 @@
+<h1>参加イベント一覧</h1>
+<% @eventrooms.each do |e| %>
+ <p><%= e.event.user.name %></p>
+ <P><%= e.event.content %></p>
+<% end %>

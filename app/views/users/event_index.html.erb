@@ -1,0 +1,23 @@
+<div class="postTitle">
+ <%= @user.name %>さんの投稿一覧
+</div>
+<% @events.each do |e| %>
+<div class="content">
+  <div class="content__left">
+    <div class="content__left--image"></div>
+  </div>
+  <div class="content__right">
+    <div class="content__right__top">
+      <%= link_to e.title, @event, class: "content__right__top--title" %>
+    </div>
+    <div class="content__right__bottom">
+      <div class="content__right__bottom--userName">
+        <%= link_to e.user.name, user_path(@user), class: "content__right__bottom--userName--btn" %>
+      </div>
+      <div class="content__right__bottom--date">
+        <%= e.event_date %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
