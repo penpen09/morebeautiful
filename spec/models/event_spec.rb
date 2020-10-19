@@ -29,9 +29,5 @@ RSpec.describe Event, type: :model do
       user = FactoryBot.build(:event, event_date: nil)
       expect(user).not_to be_valid
     end
-    # it 'youtubeチャンネルのurlを別のurlにすると無効' do
-    #   user = FactoryBot.build(:event, youtube_channel: 'google.com')
-    #   expect(user).not_to be_valid
-    # end
   end
 end

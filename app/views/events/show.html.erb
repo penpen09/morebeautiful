@@ -1,14 +1,14 @@
 <%= render 'events_header' %>
 <section class="page-section" id="about">
   <div class="container">
-    <p>主催者：<%= @event.user.name %></p>
+    <p><%= image_tag @event.image.url %></p>
+    <p>主催者：<%= link_to @event.user.name, user_path(@event.user.id) %></p>
     <p><%= @event.title %></p>
     <p><%= @event.content %></p>
     <p>開催日時：<%= @event.event_date.strftime('%m/%d %H:%M') %></p>
     <p>場所：<%= @event.place %></p>
     <p>参加費：<%= @event.fee %>円</p>
     <p>連絡事項：<%= @event.contact %></p>
-    <p><%= image_tag @event.image.url %></p>
     <p><% @event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
     <div class="text-center">
       <% if user_signed_in? && current_user.id == @event.user_id || current_user.try(:admin?)%>

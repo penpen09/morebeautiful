@@ -23,6 +23,7 @@
         <p>愛用のメイク道具 : <%= @user.make_tool %></p>
         <p>youtubeチャンネル : <%= @user.youtube_channel %></p>
         <%= render 'stats' %>
+        <%= render 'follow_form', user:@user %>
         <br>
         <%= link_to 'Edit', edit_user_path(@user) %>
       </div>

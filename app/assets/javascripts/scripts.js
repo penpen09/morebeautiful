@@ -45,19 +45,19 @@
   jQuery(window).scroll(navbarCollapse);
 
   // Magnific popup calls
-  jQuery('#portfolio').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    tLoading: 'Loading image #%curr%...',
-    mainClass: 'mfp-img-mobile',
-    gallery: {
-      enabled: true,
-      navigateByImgClick: false,
-      preload: [0, 1]
-    },
-    image: {
-      tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-    }
-  });
+  // jQuery('#portfolio').magnificPopup({
+  //   delegate: 'a',
+  //   type: 'image',
+  //   tLoading: 'Loading image #%curr%...',
+  //   mainClass: 'mfp-img-mobile',
+  //   gallery: {
+  //     enabled: true,
+  //     navigateByImgClick: false,
+  //     preload: [0, 1]
+  //   },
+  //   image: {
+  //     tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+  //   }
+  // });
 
 }); // End of use strict

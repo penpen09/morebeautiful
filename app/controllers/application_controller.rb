@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
     events_path
   end
   def after_sign_out_path_for(resource)
-    events_path
+    root_path
   end
 end

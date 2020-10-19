@@ -73,10 +73,9 @@
                             <%= event.event_date.strftime('%m/%d %H:%M') %>
                           </div>
                           <div class="card-body">
-                              <h5 class="card-title"><%= event.title %></h5>
+                              <h5 class="card-title"><%= link_to event.title, event_path(event) %></h5>
                               <p class="card-text">主催者：<%= event.user.name %>&nbsp;開催場所：<%= event.place %></p>
-                              <p><% event.labels.each do |label| %><%= label.name %><% end %></p>
-                              <%= link_to 'Show', event ,class: 'btn btn-primary' %>
+                              <p><% event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
                           </div>
                         </div>
                         <% end %>
