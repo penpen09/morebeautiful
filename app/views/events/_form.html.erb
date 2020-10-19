@@ -19,19 +19,19 @@
   </div>
   <div class="field">
     <%= f.label :event_date %>
-    <%= f.datetime_select :event_date %>
+    <%= f.datetime_select :event_date, include_blank: true, minute_step: 10 %>
   </div>
   <div class="field">
     <%= f.label :place %>
-    <%= f.text_field :place %>
+    <%= f.text_field :place, placeholder: "例：オンライン、東京都渋谷区" %>
   </div>
   <div class="field">
     <%= f.label :fee %>
-    <%= f.number_field :fee %>
+    <%= f.number_field :fee, placeholder: "無料の場合は0" %>
   </div>
   <div class="field">
     <%= f.label :contact %>
-    <%= f.text_field :contact %>
+    <%= f.text_field :contact, placeholder: "zoomのurlなど" %>
   </div>
   <div class="field">
     <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name)  %>

@@ -1,37 +1,42 @@
-<%= form_with(model: @user, local: true) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> 編集できません</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= render 'user_header' %>
+  <section class="page-section" id="about">
+    <div class="container">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> 編集できません</h2>
+            <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :profile %>
+          <%= f.text_area :profile %>
+        </div>
+        <div class="field">
+          <%= f.label :make_tool %>
+          <%= f.text_area :make_tool %>
+        </div>
+        <div class="field">
+          <%= f.label :youtube_channel %>
+          <%= f.text_field :youtube_channel %>
+        </div>
+
+        <div class="field">
+          <%= image_tag(@user.icon.url) if @user.icon && @user.icon.url %>
+          <%= f.label :icon %>
+          <%= f.file_field :icon %>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :profile %>
-    <%= f.text_area :profile %>
-  </div>
-  <div class="field">
-    <%= f.label :make_tool %>
-    <%= f.text_area :make_tool %>
-  </div>
-  <div class="field">
-    <%= f.label :youtube_channel %>
-    <%= f.text_field :youtube_channel %>
-  </div>
-
-  <div class="field">
-    <%= image_tag(@user.icon.url) if @user.icon && @user.icon.url %>
-    <%= f.label :icon %>
-    <%= f.file_field :icon %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

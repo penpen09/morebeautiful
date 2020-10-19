@@ -6,16 +6,17 @@ Rails.application.routes.draw do
   resources :events do
    post :confirm, on: :collection
    resources :comments
+   get :event_index, on: :member
   end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  root to:'events#index'
-
+  root to:'top#index'
+  # get '/users/eventrooms/:id', to: 'users#eventrooms'
   resources :users do
     member do
-      get :followers, :following
+      get :followers, :following, :eventrooms, :event_index
     end
   end
-  resources :eventrooms, only: [:create, :destroy]
+  resources :eventrooms, only: [:index, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :labels
   # get 'search', to: 'events#search'

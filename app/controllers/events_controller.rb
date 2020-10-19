@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :event_index]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
     @q = Event.ransack(params[:q])
     @events = @q.result(distinct: true).includes(:labelings, :labels)
+    @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
@@ -13,8 +13,10 @@ class EventsController < ApplicationController
     @comments = @event.comments
     @comment = @event.comments.build
     if user_signed_in?
-    @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
+     @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
     end
+  end
+  def event_index
   end
 
   def new
@@ -36,7 +38,7 @@ class EventsController < ApplicationController
     else
        if @event.save
          # eventMailer.contact_mail(@event).deliver
-         redirect_to events_path, notice: '新規作成しました！'
+         redirect_to events_path, notice: t('notice.create')
        else
          render :new
        end
@@ -48,7 +50,7 @@ class EventsController < ApplicationController
       render :edit
     else
       if @event.update(event_params)
-        redirect_to events_path, notice: '編集しました！'
+        redirect_to events_path, notice: t('notice.update')
       else
         render :edit
       end
@@ -57,7 +59,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: '削除しました！'
+    redirect_to events_url, notice: t('notice.destroy')
   end
 
  private
@@ -70,11 +72,4 @@ class EventsController < ApplicationController
      label_ids:[]
      })
  end
-
- def check_event
-   if current_user.id != @event.user.id
-     redirect_to events_path, notice: '権限がありません'
-   end
- end
-
 end

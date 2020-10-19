@@ -51,6 +51,8 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    autoprefixer-rails (10.0.1.0)
+      execjs
     bcrypt (3.1.16)
     better_errors (2.8.3)
       coderay (>= 1.0.0)
@@ -61,6 +63,10 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
+    bootstrap (4.4.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
     cancancan (3.1.0)
@@ -104,6 +110,8 @@ GEM
       devise (>= 4.7.1)
     erubi (1.9.0)
     execjs (2.7.0)
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -170,6 +178,7 @@ GEM
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
+    popper_js (1.16.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -301,6 +310,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
+  bootstrap (~> 4.4.1)
   byebug
   cancancan
   capybara (>= 2.15)
@@ -309,6 +319,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  faker
   jbuilder (~> 2.5)
   jquery-rails
   letter_opener_web

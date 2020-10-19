@@ -1,0 +1,30 @@
+ja:
+  activerecord:
+    models:
+      event: イベント
+      user: ユーザー
+      comment: コメント
+      eventroom: イベントルーム
+      label: ラベル
+      labeling: ラベル管理
+      relationship: フォロー・フォロワー
+    attributes:
+      event:
+        title: タイトル
+        content: 内容
+        image: 画像
+        event_date: 開催日時
+        place: 開催場所
+        fee: 参加費
+        contact: 連絡事項
+      user:
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+        profile: プロフィール
+        make_tool: メイク道具
+        icon: アイコン
+        youtube_channel: youtubeチャンネル

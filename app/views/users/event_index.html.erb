@@ -1,0 +1,26 @@
+<%= render 'user_header' %>
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="postTitle">
+       <%= @user.name %>さんの投稿一覧
+      </div>
+      <div class="container-fluid">
+        <div class="row h-100 align-items-center justify-content-center">
+          <div class="col-lg-10 align-self-end">
+            <% @events.each do |event| %>
+              <div class="card">
+                <div class="card-header">
+                  <%= event.event_date.strftime('%m/%d %H:%M') %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to event.title, event, class: "content__right__top--title" %></h5>
+                  <p class="card-text">開催場所：<%= event.place %></p>
+                  <p><% event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
