@@ -15,6 +15,7 @@ class EventsController < ApplicationController
     if user_signed_in?
      @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
     end
+    @eventrooms = Eventroom.where(event_id: @event.id)
   end
   def event_index
   end

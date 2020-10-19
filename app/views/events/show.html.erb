@@ -31,5 +31,19 @@
         <%= link_to '参加する', eventrooms_path(event_id: @event.id), method: :post ,class: 'btn btn-primary' %>
       <% end %>
     <% end %>
+
+    <div class="container-fluid">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-10 align-self-end">
+          <% @eventrooms.each do |eventroom| %>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to eventroom.user.name, user_path(eventroom.user_id) %></h5>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
