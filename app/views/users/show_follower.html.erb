@@ -1,10 +1,14 @@
-<% @user.followers.each do |user| %>
-<table>
-<tr>
- <td>  <%= user.name %> </td>
- <td><%= link_to '詳細', user_path(user) %></td>
- <td><%= render 'follow_form', user: user %></td>
-</tr>
-
-</table>
-<% end %>
+<%= render 'user_header' %>
+  <section class="page-section" id="about">
+    <div class="container">
+      <% @user.followers.each do |user| %>
+        <table>
+        <tr>
+         <td>  <%= user.name %> </td>
+         <td><%= link_to user.name, user_path(user) %></td>
+         <td><%= render 'follow_form', user: user %></td>
+        </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>

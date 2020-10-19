@@ -1,5 +1,26 @@
-<h1>参加イベント一覧</h1>
-<% @eventrooms.each do |e| %>
- <p><%= e.event.user.name %></p>
- <P><%= e.event.content %></p>
-<% end %>
+<%= render 'user_header' %>
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="postTitle">
+        <h3>参加イベント一覧</h3>
+      </div>
+      <div class="container-fluid">
+        <div class="row h-100 align-items-center justify-content-center">
+          <div class="col-lg-10 align-self-end">
+            <% @eventrooms.each do |eventroom| %>
+              <div class="card">
+                <div class="card-header">
+                  <%= eventroom.event.event_date.strftime('%m/%d %H:%M') %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><p><%= link_to eventroom.event.user.name, eventroom.event.user %></p></h5>
+                  <p class="card-text"><%= link_to eventroom.event.content, eventroom.event %></p>
+                  <p><% eventroom.event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

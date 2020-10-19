@@ -27,11 +27,11 @@
   </div>
   <div class="field">
     <%= f.label :fee %>
-    <%= f.number_field :fee %>
+    <%= f.number_field :fee, placeholder: "無料の場合は0" %>
   </div>
   <div class="field">
     <%= f.label :contact %>
-    <%= f.text_field :contact %>
+    <%= f.text_field :contact, placeholder: "zoomのurlなど" %>
   </div>
   <div class="field">
     <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name)  %>

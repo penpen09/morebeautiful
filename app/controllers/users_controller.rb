@@ -31,6 +31,8 @@ class UsersController < ApplicationController
   end
 
   def eventrooms
+    @user = User.find(params[:id])
+    @events = @user.events
     @eventrooms = current_user.eventrooms
   end
 
