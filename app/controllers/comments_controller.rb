@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:event_id, :content)
+    params.require(:comment).permit(:user_id, :event_id, :content)
   end
   def set_event
     @event = Event.find(params[:event_id])
