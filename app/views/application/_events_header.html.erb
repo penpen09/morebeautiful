@@ -6,6 +6,9 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <% if user_signed_in? %>
+                  <% if current_user.try(:admin?) %>
+                    <li class="nav-item"><%= link_to "管理画面", rails_admin_path, class:"nav-link js-scroll-trigger" %></li>
+                  <% end %>
                   <li class="nav-item navbar-left"><%= link_to "イベント一覧",events_path , class:"nav-link js-scroll-trigger" %></li>
                   <li class="nav-item navbar-left"><%= link_to "イベント作成",new_event_path , class:"nav-link js-scroll-trigger" %></li>
                   <li class="nav-item navbar-left"><%= link_to "投稿一覧",root_path , class:"nav-link js-scroll-trigger" %></li>

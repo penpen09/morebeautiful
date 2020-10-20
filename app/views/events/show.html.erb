@@ -1,7 +1,7 @@
 <%= render 'events_header' %>
 <section class="page-section" id="about">
   <div class="container">
-    <p><%= image_tag @event.image.url %></p>
+    <p><%= image_tag @event.image.url, size: "930x400" %></p>
     <p>主催者：<%= link_to @event.user.name, user_path(@event.user.id) %></p>
     <p><%= @event.title %></p>
     <p><%= @event.content %></p>
