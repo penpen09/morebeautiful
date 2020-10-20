@@ -5,11 +5,11 @@
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item navbar-left"><%= link_to "イベント一覧",events_path , class:"nav-link js-scroll-trigger" %></li>
-                <li class="nav-item navbar-left"><%= link_to "イベント作成",new_event_path , class:"nav-link js-scroll-trigger" %></li>
-                <li class="nav-item navbar-left"><%= link_to "投稿一覧",root_path , class:"nav-link js-scroll-trigger" %></li>
-                <li class="nav-item navbar-left"><%= link_to "新規投稿",root_path , class:"nav-link js-scroll-trigger" %></li>
                 <% if user_signed_in? %>
+                  <li class="nav-item navbar-left"><%= link_to "イベント一覧",events_path , class:"nav-link js-scroll-trigger" %></li>
+                  <li class="nav-item navbar-left"><%= link_to "イベント作成",new_event_path , class:"nav-link js-scroll-trigger" %></li>
+                  <li class="nav-item navbar-left"><%= link_to "投稿一覧",root_path , class:"nav-link js-scroll-trigger" %></li>
+                  <li class="nav-item navbar-left"><%= link_to "新規投稿",root_path , class:"nav-link js-scroll-trigger" %></li>
                   <li class="nav-item"><%= link_to "プロフィール", user_path(current_user.id) , class:"nav-link js-scroll-trigger"%></li>
                   <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link js-scroll-trigger" %></li>
                 <% else %>
@@ -22,10 +22,5 @@
       </div>
   </nav>
 <!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-<script src="../assets/scripts.js"></script>
 </body>

@@ -10,8 +10,8 @@
           <div class="row">
             <div class="col-lg-12 align-self-end form-row justify-content-center">
               <div class="form-group form-inline">
-                <%= f.search_field :title_cont, {placeholder: "タイトルから検索",class: "form-group form-control" } %>
-                <%= f.select :labels_name_cont, options_from_collection_for_select(Label.all, :name, :name, "") ,class: 'form-control drop' %>
+                <%= f.search_field :title_or_content_cont, {placeholder: "タイトルから検索",class: "form-group form-control" } %>
+                <%= f.select :labels_name_cont, options_from_collection_for_select(Label.all, :name, :name, "---") ,include_blank: '選択',class: 'form-control drop' %>
               </div>
             </div>
             <div class="col-lg-12 align-self-end justify-content-center">
@@ -36,9 +36,10 @@
           <% @events.each do |event| %>
             <div class="card">
               <div class="card-header">
-                <%= event.event_date.strftime('%m/%d %H:%M') %>
+                <%= l event.event_date %>
               </div>
               <div class="card-body">
+                <%= image_tag event.image.url, size: "200x150",class: "float-left" %>
                 <h5 class="card-title"><%= link_to event.title, event %></h5>
                 <p class="card-text">主催者：<%= event.user.name %>&nbsp;開催場所：<%= event.place %></p>
                 <p><% event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
