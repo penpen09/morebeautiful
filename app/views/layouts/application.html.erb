@@ -13,16 +13,6 @@
     <%# flash.each do |key, value| %>
       <%#= content_tag(:div, value, class:"#{key}") %>
     <%# end %>
-    <section class="page-section" id="about">
-      <div class="container">
-        <% if notice %>
-          <p class="alert alert-notice"><%= notice %></p>
-        <% end %>
-        <% if alert %>
-          <p class="alert alert-error"><%= alert %></p>
-        <% end %>
-      </div>
-    </div>
     <%= yield %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>

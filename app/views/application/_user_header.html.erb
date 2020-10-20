@@ -24,6 +24,16 @@
           </div>
       </div>
   </nav>
+  <section class="page-section" id="about">
+    <div class="container">
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+    </div>
+  </div>
 <!-- Bootstrap core JS-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </body>
