@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   validates :title, presence: true, length: { in: 1..255 }
   validates :content, presence: true, length: { in: 1..900 }
-  validates :fee, presence: true, numericality: {only_integer: true}
+  # validates :fee, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+  validate :fee_validate
   validates :place, presence: true, length: { in: 1..100 }
   validate :date_before_today, on: :create
   mount_uploader :image, ImageUploader
@@ -29,5 +30,10 @@ class Event < ApplicationRecord
     def ransackable_scopes(auth_object = nil)
       [:created_after, :created_before]
     end
+  end
+
+
+  def fee_validate
+    errors.add(:fee, "は0より大きくなければなりません。") if fee.nil? || fee < 0
   end
 end
