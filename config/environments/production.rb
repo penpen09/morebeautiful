@@ -70,7 +70,7 @@ Rails.application.configure do
     port: 587,
     user_name: ENV['MAIL_USER_NAME'],
     password: ENV['MAIL_PASSWORD'],
-    domain: 'warm-headland-17618.herokuapp.com',
+    domain: 'murmuring-wave-61559.herokuapp.com',
     enable_starttls_auto: true,
     authentication: :plain
     }
