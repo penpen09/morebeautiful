@@ -8,7 +8,9 @@
     <p>開催日時：<%= l @event.event_date %></p>
     <p>場所：<%= @event.place %></p>
     <p>参加費：<%= @event.fee %>円</p>
-    <p>連絡事項：<%= @event.contact %></p>
+    <% if user_signed_in?  %>
+      <p>連絡事項：<%= @event.contact %></p>
+    <% end %>
     <p><% @event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
     <div class="text-center">
       <% if user_signed_in? && current_user.id == @event.user_id || current_user.try(:admin?)%>
@@ -17,12 +19,7 @@
       <% end %>
         <%= link_to 'Back', events_path %>
     </div>
-    <p>コメント一覧</p>
-    <div id="comments_area">
-      <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
-    </div>
-    <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
-
+    <br>
     <% if user_signed_in? %>
     <%# unless @event.user_id == current_user.id %>
       <% if @eventroom.present? %>
@@ -31,10 +28,13 @@
         <%= link_to '参加する', eventrooms_path(event_id: @event.id), method: :post ,class: 'btn btn-primary' %>
       <% end %>
     <% end %>
-
+    <br>
+    <br>
     <div class="container-fluid">
       <div class="row h-100 align-items-center justify-content-center">
         <div class="col-lg-10 align-self-end">
+          <% if user_signed_in? %>
+          <p>参加者一覧</p>
           <% @eventrooms.each do |eventroom| %>
             <div class="card">
               <div class="card-body">
@@ -42,7 +42,19 @@
               </div>
             </div>
           <% end %>
+          <% end %>
         </div>
+      </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-10 align-self-end">
+          <p>コメント一覧</p>
+        <div id="comments_area">
+          <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+        </div>
+        <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
       </div>
     </div>
   </div>

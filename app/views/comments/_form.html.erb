@@ -10,10 +10,10 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.label :content,class:'sr-only' %>
+    <%= form.text_area :content, placeholder:'コメントを入力してくだい'%>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "コメントする" ,class: 'btn btn-primary' %>
   </div>
 <% end %>
