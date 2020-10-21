@@ -16,8 +16,9 @@
             </div>
             <div class="col-lg-12 align-self-end justify-content-center">
               <div class="form-inline form-row">
-                <p><%= f.date_select :event_date, {default: Time.now, use_month_numbers: true, date_separator: ' / '}, class: "form-group form-control event_time_group" %>&nbsp;〜&nbsp;
-                <%= f.date_select :event_date, {default: Time.now + 1.year, use_month_numbers: true, date_separator: ' / '}, class: "form-group form-control event_time_group" %></p>
+                <%#= f.date_select :event_date, {default: Time.now, use_month_numbers: true, date_separator: ' / '}, class: "form-group form-control event_time_group "%>
+                <p><%= f.date_field :created_after %></p>
+                <p><%= f.date_field :created_before %></p>
               </div>
             </div>
             <div class="col-lg-12 align-self-end justify-content-center">

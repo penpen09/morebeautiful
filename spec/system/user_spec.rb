@@ -65,4 +65,27 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
     end
   end
+  describe '編集機能' do
+    before do
+      @user = FactoryBot.create(:user)
+      @user.skip_confirmation!
+      @user.save!
+      visit new_user_session_path
+      fill_in "Email address", with: 'user_1r@example.com'
+      fill_in "Password", with: 'password1'
+      click_on 'ログイン'
+      visit user_path(@user.id)
+    end
+    context 'パスワードとアドレスの変更' do
+      it 'パスワードとアドレスの編集ができる' do
+        click_on 'passwordとmailの変更'
+        fill_in "メールアドレス", with: 'user_user_1@example.com'
+        fill_in "パスワード", with: 'password11'
+        fill_in "確認用パスワード", with: 'password11'
+        fill_in "現在のパスワード", with: 'password1'
+        click_on '更新'
+        expect(page).to have_content 'アカウント情報を変更しました。'
+      end
+    end
+  end
 end

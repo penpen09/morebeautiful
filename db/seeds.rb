@@ -77,3 +77,11 @@ end
                 user_id: 8
                )
 end
+
+Label.create(name: "顔")
+Label.create(name: "口もと")
+Label.create(name: "目もと")
+Label.create(name: "ほお")
+Label.create(name: "輪郭")
+Label.create(name: "鼻")
+Label.create(name: "その他")

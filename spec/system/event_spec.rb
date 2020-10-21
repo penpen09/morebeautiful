@@ -115,11 +115,13 @@ RSpec.describe 'イベント管理機能', type: :system do
     end
     context '日付検索をした場合' do
       it "該当する日付に完全一致するイベントが絞り込まれる" do
+        event_create
+        event2_create
         visit events_path
-        select '11月', from: :event_event_date_2i
-        select '20', from: :event_event_date_3i
+        fill_in :q_created_after, with:'002020-10-30 10:00:00'
+        fill_in :q_created_before, with:'002020-12-30 10:00:00'
         click_button '検索'
-        expect(page).to have_content 'メイク1'
+        expect(page).to have_content 'メイク'
       end
     end
   end
@@ -130,6 +132,26 @@ RSpec.describe 'イベント管理機能', type: :system do
          event_create
          click_on 'メイク1'
          expect(page).to have_content 'メイクコンテント1'
+       end
+     end
+  end
+  describe 'イベント参加機能' do
+    before do
+      event_create
+      click_on 'ログアウト'
+      @user2 = FactoryBot.create(:user)
+      @user2.skip_confirmation!
+      @user2.save!
+      visit new_user_session_path
+      fill_in "Email address", with: 'user_1r@example.com'
+      fill_in "Password", with: 'password1'
+      click_on 'ログイン'
+    end
+     context '任意のイベントに参加した場合' do
+       it 'イベントに参加できる' do
+         click_on 'メイク1'
+         click_on '参加する'
+         expect(page).to have_content 'イベントに参加しました'
        end
      end
   end

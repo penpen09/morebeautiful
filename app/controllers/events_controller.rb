@@ -3,10 +3,14 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @q = Event.ransack(params[:q])
-    @events = @q.result(distinct: true).includes(:labelings, :labels)
-    @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
-    @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    search_options = {
+      created_after: params[:created_after],
+      created_before: params[:created_before]
+      }
+    @q = Event.ransack(params[:q], search_options)
+    @events = @q.result(distinct: true).includes(:labelings, :labels).order(event_date: :asc).where('event_date > ?', DateTime.now)
+    # @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
+    # @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   def show
