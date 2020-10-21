@@ -45,6 +45,7 @@ gem 'jquery-rails'
 gem 'ransack'
 gem 'faker'
 gem 'bootstrap', '~> 4.4.1'
+gem 'letter_opener_web'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,6 +53,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 group :development do
@@ -67,9 +72,11 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'webdrivers'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

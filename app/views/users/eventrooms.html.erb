@@ -10,7 +10,7 @@
             <% @eventrooms.each do |eventroom| %>
               <div class="card">
                 <div class="card-header">
-                  <%= eventroom.event.event_date.strftime('%m/%d %H:%M') %>
+                  <%= l eventroom.event.event_date %>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title"><p><%= link_to eventroom.event.user.name, eventroom.event.user %></p></h5>
