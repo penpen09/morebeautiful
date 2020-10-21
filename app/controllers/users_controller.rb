@@ -43,6 +43,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :icon, :name, :profile, :make_tool, :youtube_channel)
+    params.require(:user).permit(:id, :email, :icon, :icon_cache, :name, :profile, :make_tool, :youtube_channel)
   end
 end
