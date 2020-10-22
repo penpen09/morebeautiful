@@ -2,7 +2,7 @@ class IconUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-
+  process resize_to_limit: [100, 100]
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -32,7 +32,6 @@ class IconUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process resize_to_limit: [50, 50]
   # end
-  process resize_to_limit: [100, 100]
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

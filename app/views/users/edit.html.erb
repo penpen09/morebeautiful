@@ -30,9 +30,11 @@
         </div>
 
         <div class="field">
-          <%= image_tag(@user.icon.url) if @user.icon && @user.icon.url %>
+          <%= image_tag @user.icon.url if @user.icon && @user.icon.url %>
           <%= f.label :icon %>
+          <%= f.hidden_field :icon_cache %>
           <%= f.file_field :icon %>
+          <p><%= f.check_box :remove_icon %>画像を削除する</p>
 
         <div class="actions">
           <%= f.submit %>

@@ -73,7 +73,7 @@ class EventsController < ApplicationController
  end
 
  def event_params
-   params.require(:event).permit(:image, :image_cache, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id, {
+   params.require(:event).permit(:image, :image_cache, :remove_image, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id, {
      label_ids:[]
      })
  end
