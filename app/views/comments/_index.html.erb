@@ -4,8 +4,10 @@
       <li style="list-style: none;">
         <div class="comment-content" id ="this_comment_<%= comment.id %>"></div>
           <p><%= comment.user.name %><%= image_tag comment.user.icon.url, size: "40x40" %>
-          <span><%= link_to "編集", edit_event_comment_path(event, comment), remote: true %></span>
-          <%= link_to "削除", event_comment_path(comment.event_id, comment.id), method: :delete, remote: true,data: { confirm: "本当に削除しますか?"} %></p>
+          <% if user_signed_in? %>
+            <span><%= link_to "編集", edit_event_comment_path(event, comment), remote: true %></span>
+            <%= link_to "削除", event_comment_path(comment.event_id, comment.id), method: :delete, remote: true,data: { confirm: "本当に削除しますか?"} %></p>
+          <% end %>
           <p><%= safe_join(comment.content.split("\n"),tag(:br)) %></p>
         </div>
       </li>

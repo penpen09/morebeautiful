@@ -54,7 +54,9 @@
         <div id="comments_area">
           <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
         </div>
+        <% if user_signed_in? %>
         <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
+        <% end %>
       </div>
     </div>
   </div>

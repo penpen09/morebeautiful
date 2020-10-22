@@ -4,7 +4,7 @@
       <% @user.followers.each do |user| %>
         <table>
         <tr>
-         <td><%= link_to user.name, user_path(user) %><%= image_tag @user.icon.url, size: "40x40" %></td>
+         <td><%= link_to user.name, user_path(user) %><%= image_tag user.icon.url, size: "40x40" %></td>
          <td><%= render 'follow_form', user: user %></td>
         </tr>
         </table>

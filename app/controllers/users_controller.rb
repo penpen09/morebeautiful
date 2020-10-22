@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-    @eventrooms = current_user.eventrooms
+    @eventrooms = current_user.eventrooms if user_signed_in?
   end
 
   def following

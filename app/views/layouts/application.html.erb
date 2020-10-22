@@ -4,15 +4,19 @@
     <title>Beautycollection</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%# flash.each do |key, value| %>
-      <%#= content_tag(:div, value, class:"#{key}") %>
-    <%# end %>
+    <section class="page-section" id="about">
+      <div class="container">
+        <% flash.each do|key, value| %>
+          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+        <% end %>
+      </div>
+    </div>
     <%= yield %>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
