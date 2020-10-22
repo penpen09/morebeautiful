@@ -4,7 +4,7 @@
       <li style="list-style: none;">
         <div class="comment-content" id ="this_comment_<%= comment.id %>"></div>
           <p><%= comment.user.name %><%= image_tag comment.user.icon.url, size: "40x40" %>
-          <% if user_signed_in? %>
+          <% if user_signed_in? && current_user.id == comment.user_id || current_user.try(:admin?)%>
             <span><%= link_to "編集", edit_event_comment_path(event, comment), remote: true %></span>
             <%= link_to "削除", event_comment_path(comment.event_id, comment.id), method: :delete, remote: true,data: { confirm: "本当に削除しますか?"} %></p>
           <% end %>
