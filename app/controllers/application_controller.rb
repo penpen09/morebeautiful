@@ -11,5 +11,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
-
+  def password_logged_in?
+    current_user.present?
+  end
 end

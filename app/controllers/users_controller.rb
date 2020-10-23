@@ -14,7 +14,11 @@ class UsersController < ApplicationController
     end
   end
   def show
-    @user = User.find(params[:id])
+      if params[:id] == "password"
+        redirect_to new_user_session_path
+      else
+         @user = User.find(params[:id])
+      end
     @eventrooms = current_user.eventrooms if user_signed_in?
   end
 
