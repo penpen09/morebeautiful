@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   validates :profile, length: { maximum: 900 }
   validates :make_tool, length: { maximum: 900 }
-  validates :youtube_channel, allow_blank: true, format: { with: /(\Ahttps:\/\/www\.youtube\.com\/watch\?v=)+[\w]{11}\z/ }
+  validates :youtube_channel, allow_blank: true, format: { with: /(\Ahttps:\/\/www\.youtube\.com\/channel\/)+[a-zA-Z0-9]+/ }
 
   has_many :eventrooms, dependent: :destroy
   has_many :eventroom_events, through: :eventrooms, source: :event

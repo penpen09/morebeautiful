@@ -1,44 +1,44 @@
 <%= render 'user_header' %>
   <section class="page-section" id="about">
     <div class="container">
-      <%= form_with(model: @user, local: true) do |f| %>
-        <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> 編集できません</h2>
-            <ul>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> 編集できません</h2>
+          <ul>
             <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+            <li><%= message %></li>
             <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <div class="field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
+          </ul>
         </div>
-        <div class="field">
-          <%= f.label :profile %>
-          <%= f.text_area :profile %>
+      <% end %>
+        <div class="form-group">
+          <%= form_with(model: @user, local: true) do |f| %>
+        <div class=”input-group” >
+          <%= f.label :name,class:'sr-only' %>
+          <%= f.text_field :name ,placeholder:"name",class: "form-control form-control"%>
         </div>
-        <div class="field">
-          <%= f.label :make_tool %>
-          <%= f.text_area :make_tool %>
+        <div class="form-group">
+          <%= f.label :profile ,class:'sr-only'%>
+          <%= f.text_area :profile,placeholder:"progile",class: "form-control form-control" %>
         </div>
-        <div class="field">
-          <%= f.label :youtube_channel %>
-          <%= f.text_field :youtube_channel %>
+        <div class="form-group">
+          <%= f.label :make_tool ,class:'sr-only'%>
+          <%= f.text_area :make_tool,placeholder:"メイク道具",class: "form-control form-control" %>
         </div>
-
-        <div class="field">
+        <div class="form-group">
+          <%= f.label :youtube_channel ,class:'sr-only'%>
+          <%= f.text_field :youtube_channel,placeholder:"youtubeチャンネル",class: "form-control form-control" %>
+        </div>
+        <div class="form-group">
           <%= image_tag @user.icon.url if @user.icon && @user.icon.url %>
           <%= f.label :icon %>
           <%= f.hidden_field :icon_cache %>
           <%= f.file_field :icon %>
           <p><%= f.check_box :remove_icon %>画像を削除する</p>
-
         <div class="actions">
-          <%= f.submit %>
+          <%= f.submit "更新する",class: 'btn btn-primary'%>
         </div>
       <% end %>
+      </div>
     </div>
   </div>

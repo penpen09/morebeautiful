@@ -1,49 +1,49 @@
-  <%= form_with(model: @event, local: true, url: choose_new_or_edit) do |f| %>
-    <% if @event.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@event.errors.count, "error") %> 作成できません</h2>
-        <ul>
+<% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@event.errors.count, "error") %> 作成できません</h2>
+      <ul>
         <% @event.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <div class="field">
-      <%= image_tag @event.image.url if @event.image && @event.image.url %>
-      <p><%= f.check_box :remove_image %>画像を削除</p>
-      <%= f.label :image %>
-      <%= f.hidden_field :image_cache %>
-      <%= f.file_field :image %>
-    </div>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <%= f.label :event_date %>
-      <%= f.datetime_select :event_date, include_blank: true, minute_step: 10 ,class: "form-control bootstrap-date"%>
-    </div>
-    <div class="field">
-      <%= f.label :place %>
-      <%= f.text_field :place, placeholder: "例：オンライン、東京都渋谷区" %>
-    </div>
-    <div class="field">
-      <%= f.label :fee %>
-      <%= f.number_field :fee, placeholder: "無料の場合は0" %>
-    </div>
-    <div class="field">
-      <%= f.label :contact %>
-      <%= f.text_field :contact, placeholder: "zoomのurlなど" %>
-    </div>
-    <div class="field">
-      <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name)  %>
-    </div>
-    <div class="actions">
-      <%= f.submit "投稿する",class: 'btn btn-primary'%>
-    </div>
-  <% end %>
+      </ul>
+  </div>
+<% end %>
+  <div class="form-group">
+        <%= form_with(model: @event, local: true, url: choose_new_or_edit) do |f| %>
+          <%= image_tag @event.image.url  if @event.image && @event.image.url %>
+          <%= f.label :image ,class:'sr-only btn btn-primary'%>
+          <%= f.hidden_field :image_cache %>
+          <%= f.file_field :image , class: "form-control-file"%>
+          <p><%= f.check_box :remove_image %>画像を削除</p>
+          <div class=”input-group” >
+          <%= f.label :title ,class:'sr-only'%>
+          <%= f.text_field :title ,placeholder:"タイトル",class: "form-control form-control"%>
+          </div>
+          <div class=”input-group”>
+          <%= f.label :content ,class:'sr-only'%>
+          <%= f.text_area :content ,class:"form-control", placeholder:"詳細" %>
+          </div>
+          <div class="input-group">
+          <%= f.label :event_date %>
+          <%= f.datetime_select :event_date, include_blank: true, minute_step: 10 ,class: "form-control form-control"%>
+          </div>
+          <div class=”input-group” >
+          <%= f.label :place %>
+          <%= f.text_field :place, placeholder: "例：オンライン、東京都渋谷区" ,class: "form-control form-control"%>
+          </div>
+          <div class=”input-group” >
+          <%= f.label :fee %>
+          <%= f.number_field :fee, placeholder: "無料の場合は0",class: "form-control form-control" %>
+          </div>
+          <div class=”input-group” >
+          <%= f.label :contact %>
+          <%= f.text_field :contact, placeholder: "zoomのurlなど" ,class: "form-control form-control"%>
+          </div>
+          <div class=”input-group” >
+          <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name, class: "form-check-input") %>
+          </div>
+        <div class="actions">
+          <%= f.submit "投稿する",class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+  </div>

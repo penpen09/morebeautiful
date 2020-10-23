@@ -9,9 +9,9 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content,class:'sr-only' %>
-    <%= form.text_area :content, placeholder:'コメントを入力してくだい'%>
+    <%= form.text_area :content, placeholder:'コメントを入力してくだい',class: "form-control form-control"%>
   </div>
   <div class="actions">
     <%= form.submit "コメントする" ,class: 'btn btn-primary' %>

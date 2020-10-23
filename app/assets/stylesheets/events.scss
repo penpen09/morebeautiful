@@ -2,17 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.form-signin {
-  max-width: 330px;
+.form-event {
+  max-width: 100%;
   padding: 15px;
   margin: 0 auto;
   border: solid 3px #f5f5f5;
 }
-.form-signin .form-signin-heading,
-.form-signin {
+.form-event .form-event-heading,
+.form-event {
   margin-bottom: 10px;
 }
-.form-signin .form-control {
+.form-event .form-control {
   position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -21,7 +21,7 @@
   padding: 10px;
   font-size: 16px;
 }
-.form-signin .form-control:focus {
+.form-event .form-control:focus {
   z-index: 2;
 }
 .form_login{

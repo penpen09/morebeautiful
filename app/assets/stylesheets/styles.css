@@ -2023,6 +2023,7 @@ pre code {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 10px;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -10215,4 +10216,63 @@ header.masthead h1 {
 
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
+}
+
+.message_notice_all {
+  color: #495057;
+  background-color: rgba(200, 200, 200, 0.75);
+  box-shadow: 10px 10px 15px -10px;
+  border-radius: 4px;
+}
+
+.search_title .search_label {
+  background: none;
+  border: 2px solid #fff;
+  coloer: #fff;
+
+}
+
+header.masthead_event {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/bg-image.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead_event h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 992px) {
+  header.masthead_event {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.masthead_event p {
+    font-size: 1.15rem;
+  }
+  header.masthead_event h1 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  header.masthead_event h1 {
+    font-size: 3.5rem;
+  }
+}
+
+.list-group .myprofile-list {
+  border-bottom: solid 2px #95999e;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 20px;
+}
+
+.profile-page {
+  margin-top: 10px;
 }

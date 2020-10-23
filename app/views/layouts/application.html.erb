@@ -13,7 +13,7 @@
     <section class="page-section" id="about">
       <div class="container">
         <% flash.each do|key, value| %>
-          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+          <div class="message_notice_all"><%= content_tag(:div, value, class: "alert alert-#{key}") %></div>
         <% end %>
       </div>
     </div>
