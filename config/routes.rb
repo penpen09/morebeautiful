@@ -8,7 +8,7 @@ Rails.application.routes.draw do
    resources :comments
    get :event_index, on: :member
   end
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
   root to:'top#index'
   # get '/users/eventrooms/:id', to: 'users#eventrooms'
   resources :users do
@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :labels
   # get 'search', to: 'events#search'
+  resources :inquiries
 end

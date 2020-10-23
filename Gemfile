@@ -46,6 +46,8 @@ gem 'ransack'
 gem 'faker'
 gem 'bootstrap', '~> 4.4.1'
 gem 'letter_opener_web'
+gem 'kintone'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
