@@ -55,11 +55,12 @@
         <p><% @event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
         </div>
       </div>
+      <br>
       <!-- コメント -->
       <div class="container-fluid">
         <div class="row h-100 align-items-center justify-content-center">
           <div class="col-lg-10 align-self-end">
-            <p>コメント一覧</p>
+            <img border="0" src="../assets/comments.jpg" width="150" height="100">
           <div id="comments_area">
             <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
           </div>
@@ -76,14 +77,10 @@
       <div class="row h-100 align-items-center justify-content-center">
         <div class="col-lg-10 align-self-end">
           <% if user_signed_in? %>
-          <p>参加者一覧</p>
-          <% @eventrooms.each do |eventroom| %>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><%= link_to eventroom.user.name, user_path(eventroom.user_id) %></h5>
-              </div>
-            </div>
-          <% end %>
+            <img border="0" src="../assets/participent.jpg" width="150" height="100">
+            <% @eventrooms.each do |eventroom| %>
+              <h5 class="card-title"><%= link_to eventroom.user.name, user_path(eventroom.user_id) %><%= image_tag eventroom.user.icon.url, size: "40x40" %></h5>
+            <% end %>
           <% end %>
         </div>
       </div>

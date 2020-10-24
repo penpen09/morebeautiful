@@ -74,8 +74,8 @@ Rails.application.configure do
   #   enable_starttls_auto: true,
   #   authentication: :plain
   #   }
-  config.action_mailer.default_url_options = { host: 'murmuring-wave-61559.herokuapp.com'}
-  config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.default_url_options = { host: 'murmuring-wave-61559.herokuapp.com'}
+  # config.action_mailer.delivery_method = :letter_opener_web
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
