@@ -6,6 +6,7 @@
         <tr>
           <td><%= link_to user.name,user_path(user) %><%= image_tag user.icon.url, size: "40x40" %></td>
           <td><%= render 'follow_form', user: user %></td>
+          <td><%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %></td>
         </tr>
         </table>
       <% end %>
