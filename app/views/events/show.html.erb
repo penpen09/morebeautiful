@@ -47,7 +47,7 @@
         <p>参加費：<%= @event.fee %>円</p>
         </div>
         <div class=”input-group” >
-        <% if user_signed_in?  %>
+        <% if user_signed_in? && @eventroom.present? %>
           <p>連絡事項：<%= @event.contact %></p>
         <% end %>
         </div>

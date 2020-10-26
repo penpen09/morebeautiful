@@ -21,4 +21,7 @@ Rails.application.routes.draw do
   resources :labels
   # get 'search', to: 'events#search'
   resources :inquiries
+  resources :conversations do
+    resources :messages
+  end
 end
