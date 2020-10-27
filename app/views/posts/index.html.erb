@@ -1,0 +1,44 @@
+
+<%= render 'events_header' %>
+<header class="masthead_post">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-white font-weight-bold">More Beautiful Now</h1>
+                <hr class="divider my-4" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+              <%= search_form_for @q do |f| %>
+                <%= f.search_field :title_or_content_cont, {placeholder: "タイトルから検索",class: "form-group form-control search_title" } %>
+                <%= f.select :labels_name_cont, options_from_collection_for_select(Label.all, :name, :name, "---") ,include_blank: '選択',class: 'form-control drop search_label' %>
+                <%= f.submit "検索" ,class: "btn btn-outline-light search-event-secondary"%>
+                <%= link_to '検索条件クリア', request.path ,class: "btn btn-outline-primary search-event-primary"%>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="page-section" id="about">
+  <div class="container">
+    <!-- 一覧 -->
+    <div class="container-fluid">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-10 align-self-end">
+          <% @posts.each do |post| %>
+            <div class="card">
+              <div class="card-header">
+                <%= post.title %>
+              </div>
+              <div class="card-body">
+                <%= image_tag post.image.url, size: "200x150",class: "float-left" %>
+                <h5 class="card-title"><%= link_to post.title, post %></h5>
+                <p class="card-text"><%= post.user.name %></p>
+                <p><% post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

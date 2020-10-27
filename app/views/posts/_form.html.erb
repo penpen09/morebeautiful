@@ -1,0 +1,41 @@
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> 作成できません</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+  <div class="form-group">
+        <%= form_with(model: @post, local: true) do |f| %>
+          <%= image_tag @post.image.url  if @post.image && @post.image.url %>
+          <%= f.label :image ,class:'sr-only btn btn-primary'%>
+          <%= f.hidden_field :image_cache %>
+          <%= f.file_field :image , class: "form-control-file"%>
+          <p><%= f.check_box :remove_image %>画像を削除</p>
+          <div class=”input-group” >
+          <%= f.label :title ,class:'sr-only'%>
+          <%= f.text_field :title ,placeholder:"タイトル",class: "form-control form-control"%>
+          </div>
+          <div class=”input-group”>
+          <%= f.label :content ,class:'sr-only'%>
+          <%= f.text_area :content ,class:"form-control", placeholder:"詳細" %>
+          </div>
+          <div class=”input-group”>
+          <%= f.label :cosmetic ,class:'sr-only'%>
+          <%= f.text_area :cosmetic ,class:"form-control", placeholder:"詳細" %>
+          </div>
+          <div class=”input-group” >
+          <%= f.label :youtube_url ,class:'sr-only'%>
+          <%= f.text_field :youtube_url ,placeholder:"youtubeurl",class: "form-control form-control"%>
+          </div>
+          <div class=”input-group” >
+          <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name, class: "form-check-input") %>
+          </div>
+        <div class="actions">
+          <%= f.submit "投稿する",class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+  </div>

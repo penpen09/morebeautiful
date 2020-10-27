@@ -37,7 +37,7 @@ end
 3.times do |n|
   Event.create!(title: "ハロウィンメイク",
                 content: "ゾンビのメイクをしたい人向けです",
-                event_date: '2020-10-25 10:00:00',
+                event_date: '2021-01-15 10:00:00',
                 place: "オフライン",
                 fee: 0,
                 contact: "zoomのurlはこちら",

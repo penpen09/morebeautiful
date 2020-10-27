@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :events
+  has_many :posts
   mount_uploader :icon, IconUploader
   validates :name, length: { maximum: 50 }
 

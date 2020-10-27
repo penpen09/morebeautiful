@@ -1,0 +1,40 @@
+<%= render 'events_header' %>
+<section class="page-section" id="about">
+  <div class="container">
+    <!-- 編集削除ボタン -->
+    <div class="text-right">
+      <% if user_signed_in? && current_user.id == @post.user_id || current_user.try(:admin?)%>
+        <%= link_to 'Edit', edit_post_path(@post) %> |
+        <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> |
+      <% end %>
+        <%= link_to 'Back', posts_path %>
+    </div>
+    <!-- 詳細内容-->
+      <div class="form-group">
+        <div class=”input-group” >
+        <p><%= image_tag @post.image.url, size: "930x400" %></p>
+        </div>
+        <div class=”input-group” >
+        <p >投稿者：<%= link_to @post.user.name, user_path(@post.user.id) %></p>
+        </div>
+        <div class=”input-group” >
+        <p>タイトル：<%= @post.title %></p>
+        </div>
+        <div class=”input-group” >
+        <p>詳細：<%= @post.content %></p>
+        </div>
+        <div class=”input-group” >
+        <p>メイク道具：<%= @post.cosmetic %></p>
+        </div>
+        <div class=”input-group” >
+        <p>youtube：<%= @post.youtube_url %></p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class=”input-group” >
+        <p><% @post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+        </div>
+      </div>
+    <br>
+    <br>
+  </div>
+</section>
