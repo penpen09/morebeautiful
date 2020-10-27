@@ -9,35 +9,59 @@
       <% end %>
         <%= link_to 'Back', posts_path %>
     </div>
+    <br>
     <!-- 詳細内容-->
-      <div class="form-group">
-        <div class=”input-group” >
-        <p><%= image_tag @post.image.url, size: "930x400" %></p>
+    <div class="base base-event-view">
+      <div class="base-event-view-content">
+        <div id="visual-banner">
+          <div id="visual-banner-preview">
+            <%= image_tag @post.image.url, class: "post_image"%>
+          </div>
         </div>
-        <div class=”input-group” >
-        <p >投稿者：<%= link_to @post.user.name, user_path(@post.user.id) %></p>
-        </div>
-        <div class=”input-group” >
-        <p>タイトル：<%= @post.title %></p>
-        </div>
-        <div class=”input-group” >
-        <p>詳細：</p>
-        <p><%= safe_join(@post.content.split("\n"),tag(:br)) %></p>
-        </div>
-        <div class=”input-group” >
-        <p>メイク道具：</p>
-        <p><%= safe_join(@post.cosmetic.split("\n"),tag(:br)) %></p>
-        </div>
-        <div class=”input-group” >
-          <% if @post.youtube_url.present? %>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <% end %>
-        </div>
-        <div class=”input-group” >
-        <p><% @post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+        <hgroup>
+          <div id="field-event-name" ><h1 class="event-name-ttl"><%= @post.title %></h1></div>
+          <div class="subtitle-box">
+            <div id="field-event-subtitle" >
+            <strong></strong>
+            </div>
+          </div>
+        </hgroup>
+        <div class="col-main">
+          <div class="box-wide">
+            <div class="post">
+              <span class="tags">投稿者</span>
+              <div id="field-event-description" class="event-description">
+                <section><%= link_to @post.user.name, user_path(@post.user.id) %></section>
+              </div>
+            </div>
+            <div class="post">
+              <span class="tags">詳細</span>
+              <div id="field-event-description" class="event-description">
+                <section><%= safe_join(@post.content.split("\n"),tag(:br)) %></section>
+              </div>
+            </div>
+            <div class="post">
+              <span class="tags">メイク道具</span>
+              <div id="field-event-description" class="event-description">
+                <section><%= safe_join(@post.cosmetic.split("\n"),tag(:br)) %></section>
+              </div>
+            </div>
+            <div class="post center-block"">
+              <% if @post.youtube_url.present? %>
+              <span class="tags">youtube</span>
+              <div id="field-event-description" class="event-description">
+                <section><iframe width="890" height="400" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></section>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="post-section">
+            <div class="tag-list">
+              <% @post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %>
+            </div>
+          </div>
         </div>
       </div>
-    <br>
-    <br>
+    </div>
   </div>
 </section>
