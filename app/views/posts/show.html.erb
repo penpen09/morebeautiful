@@ -21,14 +21,17 @@
         <p>タイトル：<%= @post.title %></p>
         </div>
         <div class=”input-group” >
-        <p>詳細：<%= @post.content %></p>
+        <p>詳細：</p>
+        <p><%= safe_join(@post.content.split("\n"),tag(:br)) %></p>
         </div>
         <div class=”input-group” >
-        <p>メイク道具：<%= @post.cosmetic %></p>
+        <p>メイク道具：</p>
+        <p><%= safe_join(@post.cosmetic.split("\n"),tag(:br)) %></p>
         </div>
         <div class=”input-group” >
-        <p>youtube：<%= @post.youtube_url %></p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <% if @post.youtube_url.present? %>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <% end %>
         </div>
         <div class=”input-group” >
         <p><% @post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>

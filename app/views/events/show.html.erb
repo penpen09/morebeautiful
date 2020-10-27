@@ -14,9 +14,9 @@
         <% if user_signed_in? %>
         <%# unless @event.user_id == current_user.id %>
           <% if @eventroom.present? %>
-            <%= link_to 'キャンセル', eventroom_path(id: @eventroom.id), method: :delete ,class: 'btn btn-primary' %>
+            <%= link_to 'イベントをキャンセル', eventroom_path(id: @eventroom.id), method: :delete ,class: 'btn btn-primary' %>
           <% else %>
-            <%= link_to '参加する', eventrooms_path(event_id: @event.id), method: :post ,class: 'btn btn-primary' %>
+            <%= link_to 'イベントに参加する', eventrooms_path(event_id: @event.id), method: :post ,class: 'btn btn-primary' %>
           <% end %>
         <% end %>
       </div>
@@ -26,7 +26,11 @@
     <!-- 詳細内容-->
       <div class="form-group">
         <div class=”input-group” >
-        <p><%= image_tag @event.image.url, size: "930x400" %></p>
+          <div class="row">
+            <div class="col-12">
+              <%= image_tag @event.image.url, size: "930x400" ,stlye: "width:100%;"%>
+            </div>
+          </div>
         </div>
         <div class=”input-group” >
         <p >主催者：<%= link_to @event.user.name, user_path(@event.user.id) %></p>
@@ -35,7 +39,7 @@
         <p><%= @event.title %></p>
         </div>
         <div class=”input-group” >
-        <p><%= @event.content %></p>
+        <p><%= safe_join(@event.content.split("\n"),tag(:br)) %></p>
         </div>
         <div class=”input-group” >
         <p>開催日時：<%= l @event.event_date %></p>

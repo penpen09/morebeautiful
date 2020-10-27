@@ -11,7 +11,8 @@ module AuthHelper
   # kintone側のOAuth設定のクライアントシークレット
   CLIENT_SECRET = ENV["KINTONE_CLIENT_SECRET"]
   # kintoneのURL
-  SITE = ENV["KINTONE_SUB_DOMEIN"]
+  SITE = "https://#{ENV["KINTONE_SUB_DOMEIN"]}.cybozu.com"
+  # ENV["KINTONE_SUB_DOMEIN"]
   # 認可エンドポイント
   AUTHORIZE_URL = '/oauth2/authorization'
   # トークンエンドポイント

@@ -11,8 +11,8 @@ class FeedbacksController < ApplicationController
 
   # kintoenのアプリケーションID
   APP_ID = ENV["KINTONE_APP_ID"]
-  DOMAIN = ENV["KINTONE_SUB_DOMEIN"]
-
+  DOMAIN = "https://#{ENV["KINTONE_SUB_DOMEIN"]}.cybozu.com"
+  # ENV["KINTONE_SUB_DOMEIN"]
   def new
   # 初期ページロード状態では何もしない
   end

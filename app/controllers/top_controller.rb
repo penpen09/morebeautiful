@@ -1,7 +1,7 @@
 class TopController < ApplicationController
   include AuthHelper
   def index
-    @events = Event.order(created_at: :asc).limit(5)
+    @events = Event.limit(5).order(event_date: :asc).where('event_date > ?', DateTime.now)
     @login_url = get_login_url
   end
 end

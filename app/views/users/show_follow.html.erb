@@ -2,7 +2,7 @@
   <section class="page-section" id="about">
     <div class="container">
       <% @user.following.each do |user| %>
-        <table>
+        <table class="table table-borderless">
         <tr>
           <td><%= link_to user.name,user_path(user) %><%= image_tag user.icon.url, size: "40x40" %></td>
           <td><%= render 'follow_form', user: user %></td>
@@ -11,4 +11,4 @@
         </table>
       <% end %>
     </div>
-  </div>
+  </section>

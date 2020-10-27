@@ -21,8 +21,10 @@
         <p>名前 : <%= @user.name %></p>
         <p>メールアドレス : <%= @user.email %></p>
         </div>
-        <p>プロフィール : <%= @user.profile %></p>
-        <p>愛用のメイク道具 : <%= @user.make_tool %></p>
+        <p>プロフィール : </p>
+        <p><%= safe_join(@user.profile.split("\n"),tag(:br)) %></p>
+        <p>愛用のメイク道具 : </p>
+        <p><%= safe_join(@user.make_tool.split("\n"),tag(:br)) %></p>
         <p>youtubeチャンネル : <%= link_to @user.youtube_channel ,@user.youtube_channel%></p>
         <%= render 'stats' %>
         <%= render 'follow_form', user:@user %>
