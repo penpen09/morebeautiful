@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :events do
-   post :confirm, on: :collection
+   # post :confirm, on: :collection
    resources :comments
    get :event_index, on: :member
   end

@@ -31,10 +31,10 @@ class EventsController < ApplicationController
   def edit
   end
 
-  def confirm
-   @event = current_user.events.build(event_params)
-   render :new if @event.invalid?
-  end
+  # def confirm
+  #  @event = current_user.events.build(event_params)
+  #  render :new if @event.invalid?
+  # end
 
   def create
     @event = current_user.events.build(event_params)

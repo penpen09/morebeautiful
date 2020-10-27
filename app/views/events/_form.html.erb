@@ -9,7 +9,7 @@
   </div>
 <% end %>
   <div class="form-group">
-        <%= form_with(model: @event, local: true, url: choose_new_or_edit) do |f| %>
+        <%= form_with(model: @event, local: true) do |f| %>
           <%= image_tag @event.image.url  if @event.image && @event.image.url %>
           <%= f.label :image ,class:'sr-only btn btn-primary'%>
           <%= f.hidden_field :image_cache %>
