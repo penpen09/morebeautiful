@@ -25,4 +25,7 @@ Rails.application.routes.draw do
     resources :messages
   end
   resources :posts
+  get '/authorize' => 'auth#gettoken'
+  get '/inquiries', to: 'inquiries#new'
+  post '/inquiries', to: 'inquiries#create'
 end
