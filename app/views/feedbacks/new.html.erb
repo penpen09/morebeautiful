@@ -1,0 +1,42 @@
+
+<!--
+ * Rails x kintone OAuth client sample program
+ * home_controller.rb
+ * Copyright (c) 201x Cybozu
+ *
+ * Licensed under the MIT License
+ * https://opensource.org/licenses/mit-license.php
+-->
+
+<h1>お客様の声</h1>
+<%= form_for :feedback, url: feedbacks_path do |form| %>
+  <p>
+    <%= form.hidden_field :received_via, value: "WEBサイトから" %>
+    <%= form.label :category, "カテゴリ:" %><br>
+    <%= form.select :category,
+      [['---','---'],
+        ['お褒め','お褒め'],
+        ['お叱り','お叱り'],
+        ['ご要望','ご要望'],
+        ['その他','その他'],]
+    %>
+  </p>
+  <p>
+    <%= form.label :tenant_name, "テナント名:" %><br>
+    <%= form.select :tenant_name,
+      [['---',''],
+        ['坊主食品','坊主食品'],
+        ['サイボシューズ','サイボシューズ'],
+        ['Ｃミュージックストア','Ｃミュージックストア'],
+        ['施設','施設'],]
+    %>
+  </p>
+  <p>
+    <%= form.label :opinion, "ご意見内容:" %><br>
+    <%= form.text_area :opinion, size: "50x6" %>
+  </p>
+
+  <p>
+    <%= form.submit "送信" %>
+  </p>
+<% end %>

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
   resources :posts
   get '/authorize' => 'auth#gettoken'
-  get '/inquiries', to: 'inquiries#new'
-  post '/inquiries', to: 'inquiries#create'
+  get '/feedbacks', to: 'feedbacks#new'
+  post '/feedbacks', to: 'feedbacks#create'
+  resources :feedbacks
 end

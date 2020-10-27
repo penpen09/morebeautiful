@@ -7,7 +7,6 @@ Licensed under the MIT License
 
 require 'kintone'
 class InquiriesController < ApplicationController
-  include AuthHelper
 
   def new
   end
