@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:postlabelings, :labels)
+    @posts = @q.result(distinct: true).includes(:postlabelings, :labels).order(created_at: :desc)
     # @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     # @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
@@ -12,10 +12,10 @@ class PostsController < ApplicationController
   def show
     # @comments = @event.comments
     # @comment = @event.comments.build
-    # if user_signed_in?
-    #  @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
-    # end
-    # @eventrooms = Eventroom.where(event_id: @event.id)
+    if user_signed_in?
+      @favorite = current_user.favorites.find_by(post_id: @post.id)
+     end
+     @favorites = Favorite.where(post_id: @post.id)
   end
   def post_index
   end

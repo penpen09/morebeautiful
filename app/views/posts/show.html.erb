@@ -10,6 +10,15 @@
         <%= link_to 'Back', posts_path %>
     </div>
     <br>
+    <div class="tix-detail tix-action">
+      <% if user_signed_in? && current_user.id != @post.user_id %>
+        <% if @favorite.present? %>
+          <p><%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete ,class: 'btn btn-primary' %></p>
+        <% else %>
+          <p><%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post ,class: 'btn btn-primary' %></p>
+        <% end %>
+      <% end %>
+    </div>
     <!-- 詳細内容-->
     <div class="base base-event-view">
       <div class="base-event-view-content">

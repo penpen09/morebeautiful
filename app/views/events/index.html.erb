@@ -34,7 +34,8 @@
               <div class="card-body">
                 <%= image_tag event.image.url, size: "200x150",class: "float-left" %>
                 <h5 class="card-title"><%= link_to event.title, event %></h5>
-                <p class="card-text">主催者：<%= event.user.name %>&nbsp;開催場所：<%= event.place %></p>
+                <p class="card-text">主催者：<%= event.user.name %></p>
+                <p class="card-text">開催場所：<%= event.place %></p>
                 <p><% event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
               </div>
             </div>
@@ -43,4 +44,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

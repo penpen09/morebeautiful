@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
+  before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :following, :followers, :eventrooms, :event_index, :post_index, :favorites]
   def index
     @users = User.all
   end
   def edit
-    @user = User.find_by(id: params[:id])
   end
   def update
-    @user = User.find_by(id: params[:id])
     if @user.update(user_params)
       redirect_to user_path, notice: t('notice.update')
     else
@@ -23,34 +23,42 @@ class UsersController < ApplicationController
   end
 
   def following
-      @user  = User.find(params[:id])
-      @users = @user.following
-      render 'show_follow'
+    @users = @user.following
+    render 'show_follow'
   end
 
   def followers
-    @user  = User.find(params[:id])
     @users = @user.followers
     render 'show_follower'
   end
 
   def eventrooms
-    @user = User.find(params[:id])
     @events = @user.events
     @eventrooms = current_user.eventrooms
   end
 
   def event_index
-    @user = User.find(params[:id])
     @events = @user.events
   end
   def post_index
-    @user = User.find(params[:id])
     @posts = @user.posts
+  end
+  def favorites
+    @posts = @user.posts
+    @favorites = current_user.favorites
   end
 
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
   def user_params
     params.require(:user).permit(:id, :email, :icon, :icon_cache, :remove_icon, :name, :profile, :make_tool, :youtube_channel)
+  end
+  def check_user
+    set_user
+    if current_user.id != @user.id
+      redirect_to user_path, notice: '権限がありません'
+    end
   end
 end
