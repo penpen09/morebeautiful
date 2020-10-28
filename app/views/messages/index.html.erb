@@ -1,37 +1,43 @@
 <%= render 'user_header' %>
 <section class="page-section" id="about">
   <div class="container">
-    <% if @over_ten %>
-      <%= link_to '以前のメッセージ', '?m=all' %>
-    <% end %>
-    <div class="ui segment">
-      <% @messages.each do |message| %>
-        <% if message.body.present? %>
-          <div class="item">
-            <div class="content">
-              <div class="header"><strong><%= message.user.name %></strong> <%= message.message_time %></div>
-              <div class="list">
-                <div class="item">
-                  <i class="right triangle icon"></i>
-                  <%= message.body %> /
-                  <% if message.user == current_user %>
-                    <%= message.read ? '既読' : '未読' %>
-                  <% end %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 center-block">
+        <% if @over_ten %>
+          <%= link_to '以前のメッセージ', '?m=all' %>
+        <% end %>
+        <div class="ui segment">
+          <% @messages.each do |message| %>
+            <% if message.body.present? %>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><strong><%= link_to message.user.name, user_path(message.user_id) %><%= image_tag message.user.icon.url, id: "icon-header-image", class: "d-inline-block align-top"%></strong></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= message.message_time %>
+                    <% if message.user == current_user %>&nbsp;
+                      <%= message.read ? '既読' : '未読' %>
+                    <% end %></h6>
+                  <div class="card-text">
+                    <div class="item">
+                      <i class="right triangle icon"></i>
+                      <%= safe_join(message.body.split("\n"),tag(:br)) %>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+          <% end %>
+        </div>
+        <br>
+        <%= form_with(model: [@conversation, @message]) do |f| %>
+          <div class="field">
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+            <%= f.text_field :user_id, value: current_user.id, type: "hidden", style: "height:30vh;" %>
+          <div>
+            <%= f.submit "メッセージを送る", class:"btn btn-primary" %>
           </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <%= form_with(model: [@conversation, @message]) do |f| %>
-      <div class="field">
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
-        <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-      <div>
-        <%= f.submit "メッセージを送る", class:"btn btn-primary" %>
-      </div>
-    <% end %>
   </div>
 </section>
