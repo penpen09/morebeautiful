@@ -50,6 +50,8 @@
           </div>
           <div class="fb-comment-section" id="comments_area">
             <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+          </div>
+          <div class="fb-comment-section">
             <% if user_signed_in? %>
               <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
             <% end %>
@@ -78,7 +80,7 @@
               </dd>
             </dl>
           <div class="tix-detail tix-action">
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.id != @event.user_id %>
               <% if @eventroom.present? %>
                 <p><%= link_to 'イベントをキャンセル', eventroom_path(id: @eventroom.id), method: :delete ,class: 'btn btn-primary' %></p>
               <% else %>
