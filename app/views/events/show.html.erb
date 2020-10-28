@@ -43,7 +43,7 @@
           </div>
           <div class="event-section">
             <div class="tag-list">
-              <% if user_signed_in? && @eventroom.present? %>
+              <% if user_signed_in? && @eventroom.present? || current_user.id == @event.user_id %>
                 <p>連絡事項：<%= @event.contact %></p>
               <% end %>
             </div>
