@@ -1,26 +1,45 @@
 <%= render 'user_header' %>
   <section class="page-section" id="about">
     <div class="container">
-      <div class="postTitle">
-       <%= @user.name %>さんのイベント一覧
-      </div>
-      <div class="container-fluid">
-        <div class="row h-100 align-items-center justify-content-center">
-          <div class="col-lg-10 align-self-end">
-            <% @events.each do |event| %>
-              <div class="card">
-                <div class="card-header">
-                  <%= l event.event_date %>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title"><%= link_to event.title, event, class: "content__right__top--title" %></h5>
-                  <p class="card-text">開催場所：<%= event.place %></p>
-                  <p><% event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+      <div class="row">
+        <div class="col-lg-3">
+          <img border="0" src="/assets/myprofile.png" width="210" height="50">
+          <div class="list-group">
+            <a><%= link_to 'Profile', user_path(@user), class: "list-group-item myprofile-list" %></a>
+            <a><%= link_to 'following', following_user_path(@user), class: "list-group-item myprofile-list" %></a>
+            <a><%= link_to 'followers', followers_user_path(@user), class: "list-group-item myprofile-list" %></a>
+            <a><%= link_to '参加中イベント', eventrooms_user_path(@user), class: "list-group-item myprofile-list" %></a>
+            <a><%= link_to '主催イベント', event_index_user_path(@user), class: "list-group-item myprofile-list" %></a>
+            <a><%= link_to '投稿記事', post_index_user_path(@user), class: "list-group-item myprofile-list" %></a>
+            <a><%= link_to 'お気に入り記事', favorites_user_path(@user), class: "list-group-item myprofile-list" %></a>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="container profile-page">
+            <div class="postTitle">
+             <h3 style="color:#808080;"><%= @user.name %>さんのイベント一覧</h3>
+            </div>
+            <div class="container-fluid">
+              <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-lg-10 align-self-end">
+                  <% @events.each do |event| %>
+                    <div class="card">
+                      <div class="card-header">
+                        <%= l event.event_date %>
+                      </div>
+                      <div class="card-body">
+                        <%= image_tag event.image.url, size: "200x130",class: "float-left" %>
+                        <h5 class="card-title"><%= link_to event.title, event, class: "content__right__top--title" %></h5>
+                        <p class="card-text">開催場所：<%= event.place %></p>
+                        <p><% event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>

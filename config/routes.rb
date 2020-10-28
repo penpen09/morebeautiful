@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # get '/users/eventrooms/:id', to: 'users#eventrooms'
   resources :users do
     member do
-      get :followers, :following, :eventrooms, :event_index, :post_index
+      get :followers, :following, :eventrooms, :event_index, :post_index, :favorites
     end
   end
   resources :eventrooms, only: [:index, :create, :destroy]
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :posts do
     get :post_index, on: :member
   end
+  resources :favorites, only: [:index, :create, :destroy]
   get '/authorize' => 'auth#gettoken'
   get '/feedbacks', to: 'feedbacks#new'
   post '/feedbacks', to: 'feedbacks#create'

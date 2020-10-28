@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :event_index]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :check_event, only: [:edit, :update, :destroy]
 
   def index
     search_options = {
@@ -76,5 +77,10 @@ class EventsController < ApplicationController
    params.require(:event).permit(:image, :image_cache, :remove_image, :id, :content, :title, :event_date, :place, :fee, :contact, :owner_id, {
      label_ids:[]
      })
+ end
+ def check_event
+   if current_user.id != @event.user.id
+     redirect_to events_path, notice: '権限がありません'
+   end
  end
 end

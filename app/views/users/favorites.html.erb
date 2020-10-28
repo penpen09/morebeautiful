@@ -16,16 +16,28 @@
         </div>
         <div class="col-lg-9">
           <div class="container profile-page">
-            <h3 style="color:#808080;">フォロワー</h3>
-            <% @user.followers.each do |user| %>
-            <table class="table table-borderless">
-              <tr>
-                <td><%= link_to user.name, user_path(user) %><%= image_tag user.icon.url, size: "40x40" %></td>
-                <td><%= render 'follow_form', user: user %></td>
-                <td><%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %></td>
-              </tr>
-            </table>
-            <% end %>
+            <div class="postTitle">
+              <h3 style="color:#808080;">お気に入り一覧</h3>
+            </div>
+            <div class="container-fluid">
+              <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-lg-10 align-self-end">
+                  <% @favorites.each do |favorite| %>
+                    <div class="card">
+                      <div class="card-header">
+                        <%= favorite.post.title %>
+                      </div>
+                      <div class="card-body">
+                        <%= image_tag favorite.post.image.url, size: "200x150",class: "float-left" %>
+                        <h5 class="card-title"><p><%= link_to favorite.post.user.name, favorite.post.user %><%= image_tag favorite.post.user.icon.url, size: "40x40" %></p></h5>
+                        <p class="card-text"><%= link_to favorite.post.content, favorite.post %></p>
+                        <p><% favorite.post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

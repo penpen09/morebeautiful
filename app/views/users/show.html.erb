@@ -11,7 +11,7 @@
         <a><%= link_to '参加中イベント', eventrooms_user_path(@user), class: "list-group-item myprofile-list" %></a>
         <a><%= link_to '主催イベント', event_index_user_path(@user), class: "list-group-item myprofile-list" %></a>
         <a><%= link_to '投稿記事', post_index_user_path(@user), class: "list-group-item myprofile-list" %></a>
-        <a href="#" class="list-group-item myprofile-list">お気に入り記事</a>
+        <a><%= link_to 'お気に入り記事', favorites_user_path(@user), class: "list-group-item myprofile-list" %></a>
       </div>
     </div>
     <div class="col-lg-9">
@@ -29,8 +29,10 @@
         <%= render 'stats' %>
         <%= render 'follow_form', user:@user %>
         <br>
-        <%= link_to 'Edit', edit_user_path(@user) %> |
-        <%= link_to 'passwordとmailの変更', edit_user_registration_path(@user) %>
+        <% if current_user.id == @user.id%>
+          <%= link_to 'Edit', edit_user_path(@user) %> |
+          <%= link_to 'passwordとmailの変更', edit_user_registration_path(@user) %>
+        <% end %>
       </div>
     </div>
   </div>

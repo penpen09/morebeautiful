@@ -12,10 +12,10 @@ class PostsController < ApplicationController
   def show
     # @comments = @event.comments
     # @comment = @event.comments.build
-    # if user_signed_in?
-    #  @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
-    # end
-    # @eventrooms = Eventroom.where(event_id: @event.id)
+    if user_signed_in?
+      @favorite = current_user.favorites.find_by(post_id: @post.id)
+     end
+     @favorites = Favorite.where(post_id: @post.id)
   end
   def post_index
   end
