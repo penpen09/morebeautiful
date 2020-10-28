@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :event_index]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
@@ -17,8 +17,8 @@ class PostsController < ApplicationController
     # end
     # @eventrooms = Eventroom.where(event_id: @event.id)
   end
-  # def event_index
-  # end
+  def post_index
+  end
 
   def new
     @post = Post.new

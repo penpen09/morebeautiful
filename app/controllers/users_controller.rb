@@ -44,6 +44,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @events = @user.events
   end
+  def post_index
+    @user = User.find(params[:id])
+    @posts = @user.posts
+  end
 
   private
   def user_params
