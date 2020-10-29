@@ -9,7 +9,7 @@ class EventsController < ApplicationController
       created_before: params[:created_before]
       }
     @q = Event.ransack(params[:q], search_options)
-    @events = @q.result(distinct: true).includes(:labelings, :labels).order(event_date: :asc).where('event_date > ?', DateTime.now)
+    @events = @q.result(distinct: true).includes(:labelings, :labels).order(event_date: :asc).where('event_date > ?', DateTime.now).page(params[:page]).per(10)
     # @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     # @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end

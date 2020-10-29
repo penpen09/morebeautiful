@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:postlabelings, :labels).order(created_at: :desc)
+    @posts = @q.result(distinct: true).includes(:postlabelings, :labels).order(created_at: :desc).page(params[:page]).per(10)
     # @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     # @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end

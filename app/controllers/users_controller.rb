@@ -35,18 +35,18 @@ class UsersController < ApplicationController
 
   def eventrooms
     @events = @user.events
-    @eventrooms = current_user.eventrooms
+    @eventrooms = current_user.eventrooms.page(params[:page]).per(10)
   end
 
   def event_index
-    @events = @user.events
+    @events = @user.events.page(params[:page]).per(10)
   end
   def post_index
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(10)
   end
   def favorites
     @posts = @user.posts
-    @favorites = current_user.favorites
+    @favorites = current_user.favorites.page(params[:page]).per(10)
   end
 
   private
