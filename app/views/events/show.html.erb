@@ -12,7 +12,7 @@
     </div>
     <br>
     <!-- 詳細内容-->
-    <div class="base base-event-view">
+    <div class="container-fluid">
       <div class="base-event-view-content">
         <div id="visual-banner">
           <div id="visual-banner-preview">
@@ -27,88 +27,96 @@
             </div>
           </div>
         </hgroup>
-        <div class="col-main">
-          <div class="box-wide">
-            <div class="event">
-              <span class="tags">詳細</span>
-              <div id="field-event-description" class="event-description">
-                <section><%= safe_join(@event.content.split("\n"),tag(:br)) %></section>
+        <!-- メイン-->
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="box-wide">
+              <div class="event">
+                <span class="tags">詳細</span>
+                <div id="field-event-description" class="event-description">
+                  <section><%= safe_join(@event.content.split("\n"),tag(:br)) %></section>
+                </div>
+              </div>
+            </div>
+            <div class="event-section">
+              <div class="tag-list">
+                <% @event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %>
+              </div>
+            </div>
+            <div class="event-section">
+              <div class="tag-list">
+                <% if user_signed_in? && @eventroom.present? || @user == current_user %>
+                  <p>連絡事項：<%= @event.contact %></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="event-section">
+              <div class="tag-list">
+                <div id="comments_area">
+                  <% if user_signed_in? %>
+                    <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+                  <% end %>
+                </div>
+                  <% if user_signed_in? %>
+                    <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
+                  <% end %>
               </div>
             </div>
           </div>
-          <div class="event-section">
-            <div class="tag-list">
-              <% @event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %>
+          <!-- サブ-->
+          <div class="col-sm-4">
+            <div class="tix-box">
+              <div class="tix-box-content">
+                <div class="tix-detail cf">
+                  <strong><%= l @event.event_date %></strong>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="event-section">
-            <div class="tag-list">
-              <% if user_signed_in? && @eventroom.present? || @user == current_user %>
-                <p>連絡事項：<%= @event.contact %></p>
+            <dl class="tix-detail cf">
+              <dt>会場</dt>
+              <dd><%= @event.place %></dd>
+            </dl>
+             <dl class="tix-detail tickets tix-detail-wide cf" id="tickets-section">
+               <dt class="cf">参加費</dt>
+               <dd>
+                 <table class="tix-types">
+                   <tr id="tix-1995560" class="js-ticket-section">
+                     <td class="price"><%= @event.fee %>円</td>
+                    </tr>
+                  </table>
+                </dd>
+              </dl>
+            <div class="tix-detail tix-action">
+              <% if user_signed_in? && current_user.id != @event.user_id %>
+                <% if @eventroom.present? %>
+                  <p><%= link_to 'イベントをキャンセル', eventroom_path(id: @eventroom.id), method: :delete ,class: 'btn btn-primary' %></p>
+                <% else %>
+                  <p><%= link_to 'イベントに参加する', eventrooms_path(event_id: @event.id), method: :post ,class: 'btn btn-primary' %></p>
+                <% end %>
               <% end %>
             </div>
-          </div>
-          <div class="fb-comment-section" id="comments_area">
-            <% if user_signed_in? %>
-              <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
-            <% end %>
-          </div>
-          <div class="fb-comment-section">
-            <% if user_signed_in? %>
-              <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-sub">
-          <div class="tix-box">
-            <div class="tix-box-content">
-              <div class="tix-detail cf">
-                <strong><%= l @event.event_date %></strong>
-              </div>
-            </div>
-          </div>
-          <dl class="tix-detail cf">
-            <dt>会場</dt>
-            <dd><%= @event.place %></dd>
-          </dl>
-           <dl class="tix-detail tickets tix-detail-wide cf" id="tickets-section">
-             <dt class="cf">参加費</dt>
-             <dd>
-               <table class="tix-types">
-                 <tr id="tix-1995560" class="js-ticket-section">
-                   <td class="price"><%= @event.fee %>円</td>
-                  </tr>
-                </table>
+            <dl class="tix-detail tix-detail-wide tix-detail__organizer">
+              <dt>主催者</dt>
+              <dd class="tix-organizer-name">
+                <%= link_to @event.user.name, user_path(@event.user.id) %>
               </dd>
             </dl>
-          <div class="tix-detail tix-action">
-            <% if user_signed_in? && current_user.id != @event.user_id %>
-              <% if @eventroom.present? %>
-                <p><%= link_to 'イベントをキャンセル', eventroom_path(id: @eventroom.id), method: :delete ,class: 'btn btn-primary' %></p>
-              <% else %>
-                <p><%= link_to 'イベントに参加する', eventrooms_path(event_id: @event.id), method: :post ,class: 'btn btn-primary' %></p>
+            <div class="attendees">
+              <strong class="tags">参加者</strong>
+              <% if user_signed_in? %>
+                <% @eventrooms.each do |eventroom| %>
+                  <ul class="attendee-list" style="margin-top:20px">
+                    <li class="cf"> <%= link_to eventroom.user.name, user_path(eventroom.user_id) %><%= image_tag eventroom.user.icon.url, size: "40x40" %></li>
+                  </ul>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
-          <dl class="tix-detail tix-detail-wide tix-detail__organizer">
-            <dt>主催者</dt>
-            <dd class="tix-organizer-name">
-              <%= link_to @event.user.name, user_path(@event.user.id) %>
-            </dd>
-          </dl>
-          <div class="attendees">
-            <strong class="tags">参加者</strong>
-            <% if user_signed_in? %>
-              <% @eventrooms.each do |eventroom| %>
-                <ul class="attendee-list" style="margin-top:20px">
-                  <li class="cf"> <%= link_to eventroom.user.name, user_path(eventroom.user_id) %><%= image_tag eventroom.user.icon.url, size: "40x40" %></li>
-                </ul>
-              <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
-        <div>
       </div>
     </div>
+
+
+
   </div>
 </section>
