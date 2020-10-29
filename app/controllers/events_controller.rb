@@ -80,8 +80,10 @@ class EventsController < ApplicationController
      })
  end
  def check_event
-   if current_user.id != @event.user.id
-     redirect_to events_path, notice: '権限がありません'
+   unless current_user.try(:admin)
+     if current_user.id != @event.user.id
+       redirect_to events_path, notice: '権限がありません'
+     end
    end
  end
 end

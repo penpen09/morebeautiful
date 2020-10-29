@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
   def check_user
     set_user
-    unless @ser.try(:admin?)
+    unless current_user.try(:admin)
       if current_user.id != @user.id
         redirect_to user_path, notice: '権限がありません'
       end

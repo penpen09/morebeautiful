@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :event_index]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :check_post, only: [:edit, :update, :destroy]
 
   def index
     @q = Post.ransack(params[:q])
@@ -74,5 +75,12 @@ class PostsController < ApplicationController
  def post_params
    params.require(:post).permit(:image, :image_cache, :remove_image, :id, :content, :title, :cosmetic, :youtube_url,
      {label_ids:[]})
+ end
+ def check_post
+   unless current_user.try(:admin)
+     if current_user.id != @post.user.id
+       redirect_to posts_path, notice: '権限がありません'
+     end
+   end
  end
 end
