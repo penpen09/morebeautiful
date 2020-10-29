@@ -43,13 +43,15 @@
           </div>
           <div class="event-section">
             <div class="tag-list">
-              <% if user_signed_in? && @eventroom.present? || current_user.id == @event.user_id %>
+              <% if user_signed_in? && @eventroom.present? || @user == current_user %>
                 <p>連絡事項：<%= @event.contact %></p>
               <% end %>
             </div>
           </div>
           <div class="fb-comment-section" id="comments_area">
-            <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+            <% if user_signed_in? %>
+              <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+            <% end %>
           </div>
           <div class="fb-comment-section">
             <% if user_signed_in? %>
@@ -109,4 +111,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

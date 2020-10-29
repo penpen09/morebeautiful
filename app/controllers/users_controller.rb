@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :eventrooms, :favorites, :following, :followers]
   before_action :check_user, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :following, :followers, :eventrooms, :event_index, :post_index, :favorites]
   def index
@@ -57,8 +58,10 @@ class UsersController < ApplicationController
   end
   def check_user
     set_user
-    if current_user.id != @user.id
-      redirect_to user_path, notice: '権限がありません'
+    unless @ser.try(:admin?)
+      if current_user.id != @user.id
+        redirect_to user_path, notice: '権限がありません'
+      end
     end
   end
 end

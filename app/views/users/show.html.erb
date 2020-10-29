@@ -28,7 +28,7 @@
         <%= render 'stats' %>
         <%= render 'follow_form', user:@user %>
         <br>
-        <% if current_user.id == @user.id%>
+        <% if user_signed_in? && current_user.id == @user.id%>
           <%= link_to 'Edit', edit_user_path(@user) %> |
           <%= link_to 'passwordとmailの変更', edit_user_registration_path(@user) %>
         <% end %>
