@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :event_index]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :check_post, only: [:edit, :update, :destroy]
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:postlabelings, :labels).order(created_at: :desc)
+    @posts = @q.result(distinct: true).includes(:postlabelings, :labels).order(created_at: :desc).page(params[:page]).per(10)
     # @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     # @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
@@ -74,5 +75,12 @@ class PostsController < ApplicationController
  def post_params
    params.require(:post).permit(:image, :image_cache, :remove_image, :id, :content, :title, :cosmetic, :youtube_url,
      {label_ids:[]})
+ end
+ def check_post
+   unless current_user.try(:admin)
+     if current_user.id != @post.user.id
+       redirect_to posts_path, notice: '権限がありません'
+     end
+   end
  end
 end

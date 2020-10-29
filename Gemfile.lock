@@ -378,6 +378,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari
   kintone
   launchy
   letter_opener_web

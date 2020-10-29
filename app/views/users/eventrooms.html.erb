@@ -30,7 +30,7 @@
                       <div class="card-body">
                         <%= image_tag eventroom.event.image.url, size: "200x130",class: "float-left" %>
                         <h5 class="card-title"><p><%= link_to eventroom.event.user.name, eventroom.event.user %><%= image_tag eventroom.event.user.icon.url, size: "40x40" %></p></h5>
-                        <p class="card-text"><%= link_to eventroom.event.content, eventroom.event %></p>
+                        <p class="card-text"><%= link_to eventroom.event.title, eventroom.event %>開催場所：<%= eventroom.event.place %></p>
                         <p><% eventroom.event.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
                       </div>
                     </div>
@@ -38,6 +38,7 @@
                 </div>
               </div>
             </div>
+            <%= paginate @eventrooms ,class:"pagination" %>
           </div>
         </div>
       </div>

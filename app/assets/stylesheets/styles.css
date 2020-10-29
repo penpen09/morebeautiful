@@ -10315,3 +10315,8 @@ header.masthead_post h1 {
     font-size: 3.5rem;
   }
 }
+
+.pagination {
+  justify-content: center;
+  margin-top: 10px;
+}

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
       created_before: params[:created_before]
       }
     @q = Event.ransack(params[:q], search_options)
-    @events = @q.result(distinct: true).includes(:labelings, :labels).order(event_date: :asc).where('event_date > ?', DateTime.now)
+    @events = @q.result(distinct: true).includes(:labelings, :labels).order(event_date: :asc).where('event_date > ?', DateTime.now).page(params[:page]).per(10)
     # @events = @events.where('event_date > ?', DateTime.now).order(event_date: :asc)
     # @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
@@ -21,6 +21,7 @@ class EventsController < ApplicationController
      @eventroom = current_user.eventrooms.find_by(event_id: @event.id)
     end
     @eventrooms = Eventroom.where(event_id: @event.id)
+    @user = @event.user
   end
   def event_index
   end
@@ -79,8 +80,10 @@ class EventsController < ApplicationController
      })
  end
  def check_event
-   if current_user.id != @event.user.id
-     redirect_to events_path, notice: '権限がありません'
+   unless current_user.try(:admin)
+     if current_user.id != @event.user.id
+       redirect_to events_path, notice: '権限がありません'
+     end
    end
  end
 end

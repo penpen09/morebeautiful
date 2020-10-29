@@ -1,5 +1,4 @@
 <h2>ユーザー一覧(<%= @eventrooms.length %>人)</h2>
-
   <% @eventrooms.each do |e| %>
     <% @user_id = e.user_id %>
     <% user = User.find(@user_id) %>
