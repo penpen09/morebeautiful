@@ -30,7 +30,7 @@
                       <div class="card-body">
                         <%= image_tag favorite.post.image.url, size: "200x150",class: "float-left" %>
                         <h5 class="card-title"><p><%= link_to favorite.post.user.name, favorite.post.user %><%= image_tag favorite.post.user.icon.url, size: "40x40" %></p></h5>
-                        <p class="card-text"><%= link_to favorite.post.content, favorite.post %></p>
+                        <p class="card-text"><%= link_to favorite.post.title, favorite.post %></p>
                         <p><% favorite.post.labels.each do |label| %><label class='badge badge-primary'><%= label.name %></label><% end %></p>
                       </div>
                     </div>
