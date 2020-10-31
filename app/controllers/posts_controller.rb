@@ -17,6 +17,7 @@ class PostsController < ApplicationController
       @favorite = current_user.favorites.find_by(post_id: @post.id)
      end
      @favorites = Favorite.where(post_id: @post.id)
+     @like = Like.new
   end
   def post_index
   end
