@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
   resources :posts do
     get :post_index, on: :member
+    resources :likes, only: [:create, :destroy]
   end
   resources :favorites, only: [:index, :create, :destroy]
   get '/authorize' => 'auth#gettoken'
