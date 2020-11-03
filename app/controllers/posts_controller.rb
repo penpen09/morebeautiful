@@ -15,9 +15,10 @@ class PostsController < ApplicationController
     # @comment = @event.comments.build
     if user_signed_in?
       @favorite = current_user.favorites.find_by(post_id: @post.id)
+      @like = current_user.likes.find_by(post_id: @post.id)
      end
      @favorites = Favorite.where(post_id: @post.id)
-     @like = Like.new
+     @likes = Like.where(post_id: @post.id)
   end
   def post_index
   end

@@ -10,12 +10,23 @@
         <%= link_to 'Back', posts_path %>
     </div>
     <br>
+    <!-- お気に入り-->
     <div class="tix-detail tix-action">
       <% if user_signed_in? && current_user.id != @post.user_id %>
         <% if @favorite.present? %>
           <p><%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete ,class: 'btn btn-primary' %></p>
         <% else %>
           <p><%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post ,class: 'btn btn-primary' %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- いいね-->
+    <div class="tix-detail tix-action">
+      <% if user_signed_in? && current_user.id != @post.user_id %>
+        <% if @like.present? %>
+          <p><%= link_to 'いいね解除する', like_path(id: @like.id), method: :delete ,class: 'btn btn-primary' %></p>
+        <% else %>
+          <p><%= link_to 'いいねする', likes_path(post_id: @post.id), method: :post ,class: 'btn btn-primary' %></p>
         <% end %>
       <% end %>
     </div>

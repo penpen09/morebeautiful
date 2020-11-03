@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_many :favorite_events, through: :favorites, source: :event
 
   has_many :likes, dependent: :destroy
-  has_many :liked_posts, through: :likes, source: :post
+  has_many :likes_posts, through: :likes, source: :post
 
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
@@ -35,5 +35,9 @@ class User < ApplicationRecord
   end
   def unfollow!(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
   end
 end
