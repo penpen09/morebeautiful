@@ -24,9 +24,13 @@
     <div class="tix-detail tix-action">
       <% if user_signed_in? && current_user.id != @post.user_id %>
         <% if @like.present? %>
-          <p><%= link_to 'いいね解除する', like_path(id: @like.id), method: :delete ,class: 'btn btn-primary' %></p>
+          <%= link_to like_path(id: @like.id), method: :delete do %>
+            <i class="fas fa-heart unlike-btn"></i>
+          <% end %>
         <% else %>
-          <p><%= link_to 'いいねする', likes_path(post_id: @post.id), method: :post ,class: 'btn btn-primary' %></p>
+          <%= link_to likes_path(post_id: @post.id), method: :post do %>
+            <i class="far fa-heart like-btn" ></i>
+          <% end %>
         <% end %>
       <% end %>
     </div>
