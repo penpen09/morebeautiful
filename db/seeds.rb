@@ -68,6 +68,17 @@ User.all.each do |user|
   )
 end
 
+User.all.each do |user|
+  user.posts.create!(
+    title: '大人メイク',
+    content: 'ナチュラルな大人メイクはこのやり方！',
+    cosmetic: 'RMK、セザンヌ、KATE',
+    youtube_url: 'https://youtu.be/X48AvIuhD24',
+    image: File.open("./app/assets/images/sample_post1.jpg"),
+    user_id: user.id
+  )
+end
+
 # 3.times do |n|
 #   Event.create!(title: "ハロウィンメイク",
 #                 content: "ゾンビのメイクをしたい人向けです",
@@ -90,24 +101,3 @@ end
 #                )
 # end
 #
-# 3.times do |n|
-#   Event.create!(title: "クリスマスメイク",
-#                 content: "クリスマスデートにあうメイク",
-#                 event_date: '2020-12-17 16:20:00',
-#                 place: "オフライン",
-#                 fee: 1000,
-#                 contact: "zoomのurlはこちら",
-#                 user_id: User.first + 1
-#                )
-# end
-#
-# 3.times do |n|
-#   Event.create!(title: "毎日メイク",
-#                 content: "仕事に行く時のナチュラルメイク",
-#                 event_date: '2020-10-30 09:00:00',
-#                 place: "横浜市",
-#                 fee: 500,
-#                 contact: "感想を待ってます",
-#                 user_id: 8
-#                )
-# end
