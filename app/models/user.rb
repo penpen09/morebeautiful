@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_events, through: :favorites, source: :event
 
+  has_many :likes, dependent: :destroy
+  has_many :likes_posts, through: :likes, source: :post
+
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
@@ -33,4 +36,16 @@ class User < ApplicationRecord
   def unfollow!(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
+
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
+
 end
