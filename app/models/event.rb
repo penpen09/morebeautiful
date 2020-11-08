@@ -39,13 +39,13 @@ class Event < ApplicationRecord
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'eventroom'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and event_id = ? and action = ? ", current_user.id, user_id, id, 'eventroom'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
         event_id: id,
         visited_id: user_id,
-        action: 'like'
+        action: 'eventroom'
       )
       # 自分の投稿に対するいいねの場合は、通知済みとする
       if notification.visitor_id == notification.visited_id
