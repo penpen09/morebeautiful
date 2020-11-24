@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
+        @event.create_notification_comment!(current_user, @comment.id)
         format.js { render :index }
       else
         format.html { redirect_to event_path(@event), notice: t('notice.comments.create') }

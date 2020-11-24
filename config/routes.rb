@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   get '/feedbacks', to: 'feedbacks#new'
   post '/feedbacks', to: 'feedbacks#create'
   resources :feedbacks
+  resources :notifications, only: :index
 end

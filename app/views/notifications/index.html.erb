@@ -1,0 +1,12 @@
+<%= render 'events_header' %>
+<section class="page-section" id="about">
+  <div class="container">
+    <% notifications = @notifications.where.not(visitor_id: current_user.id)%>
+    <% if notifications.exists?%>
+      <%= render notifications %>
+      <%= paginate notifications, class: "pagination" %>
+    <% else %>
+      <p>通知はありません</p>
+    <% end %>
+  </div>
+</section>
