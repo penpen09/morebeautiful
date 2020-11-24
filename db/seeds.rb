@@ -18,12 +18,12 @@
 #                )
 # end
 
-User.create!(name: "Admin",
-             email: "admin@admin.com",
-             password: 'password',
-             password_confirmation: 'password',
-             admin: true
-             )
+# User.create!(name: "Admin",
+#              email: "admin@admin.com",
+#              password: 'password',
+#              password_confirmation: 'password',
+#              admin: true
+#              )
 
 5.times do |n|
   User.create!(name: "test_user#{n+1}",

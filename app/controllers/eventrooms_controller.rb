@@ -4,6 +4,8 @@ class EventroomsController < ApplicationController
   end
   def create
     eventroom = current_user.eventrooms.create(event_id: params[:event_id])
+    event = Event.find(params[:event_id])
+    event.create_notification_like!(current_user)
     redirect_to events_url, notice: "#{eventroom.event.user.name}のイベントに参加しました"
   end
   def destroy
