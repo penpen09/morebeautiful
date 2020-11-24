@@ -15,6 +15,11 @@
                   <li class="nav-item navbar-left"><%= link_to "新規投稿",new_post_path , class:"nav-link js-scroll-trigger" %></li>
                   <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link js-scroll-trigger" %></li>
                   <li class="nav-item"><%= link_to "プロフィール", user_path(current_user.id) , class:"nav-link js-scroll-trigger d-inline-block align-top"%><%= image_tag current_user.icon.url, id: "icon-header-image", class: "d-inline-block align-top"%></li>
+                  <li class="nav-item nav-link">
+                    <%= link_to(notifications_path,{class:"nav-link js-scroll-trigger"}) do %>
+                      <i class="far fa-bell", style="font-size: 1.5em;"></i>
+                    <% end %>
+                  </li>
                 <% else %>
                   <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post , class:"nav-link js-scroll-trigger" %></li>
                   <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/users/sign_in">ログイン</a></li>
