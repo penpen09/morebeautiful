@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :messages
   end
   resources :posts do
+    resources :comments
     get :post_index, on: :member
   end
   resources :favorites, only: [:index, :create, :destroy]
